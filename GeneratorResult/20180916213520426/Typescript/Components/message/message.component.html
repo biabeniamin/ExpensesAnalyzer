@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="card rerun">
+		<form (submit)="addMessage($event)">
+			<div class="input-container">
+			<input type="text" placeholder= "Content" id="Content" />
+			<div class="bar"></div>
+			</div>
+			<div class="input-container">
+			<input type="text" placeholder= "Source" id="Source" />
+			<div class="bar"></div>
+			</div>
+			<div class="button-container">
+				<input type="submit" style="padding:20px; background:white;color:tomato;border:2px solid tomato;" value="Add">
+			</div>
+		</form>
+
+		<tbody>
+			<tr>
+				<th>
+					MessageId
+				</th>
+				<th>
+					Content
+				</th>
+				<th>
+					Source
+				</th>
+				<th>
+					CreationTime
+				</th>
+			</tr>
+			<tr *ngFor="let message of messageService.messages; let i = index">
+				<td>
+					{{message.messageId}}
+				</td>
+				<td>
+					{{message.content}}
+				</td>
+				<td>
+					{{message.source}}
+				</td>
+				<td>
+					{{message.creationTime}}
+				</td>
+			</tr>
+		</tbody>
+
+	</div>
+</div>

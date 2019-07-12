@@ -1,0 +1,125 @@
+<div class="container">
+	<div class="card rerun">
+		<form (submit)="addTransaction($event)">
+			<div class="input-container">
+			<input type="text" placeholder= "Name" id="Name" />
+			<div class="bar"></div>
+			</div>
+			<div class="input-container">
+			<input type="text" placeholder= "Value" id="Value" />
+			<div class="bar"></div>
+			</div>
+			<select id=CategoryIdDropDown (change)="categorieChanged($event.target.value)">
+				<option [value]="categorie.categoryId" *ngFor= "let categorie of categorieService.categories" >
+				{{categorie.categoryId}}
+				{{categorie.name}}
+				</option>
+			</select>
+			
+			<select id=AccountIdDropDown (change)="accountChanged($event.target.value)">
+				<option [value]="account.accountId" *ngFor= "let account of accountService.accounts" >
+				{{account.accountId}}
+				{{account.email}}
+				{{account.password}}
+				{{account.balance}}
+				</option>
+			</select>
+			
+			<div class="button-container">
+				<input type="submit" style="padding:20px; background:white;color:tomato;border:2px solid tomato;" value="Add">
+			</div>
+		</form>
+
+		<tbody>
+			<tr>
+				<th>
+					TransactionId
+				</th>
+				<th>
+					AccountId
+				</th>
+				<th>
+					CategoryId
+				</th>
+				<th>
+					Name
+				</th>
+				<th>
+					Value
+				</th>
+				<th>
+					CreationTime
+				</th>
+				<th>
+					categorie.CategoryId
+				</th>
+				<th>
+					categorie.Name
+				</th>
+				<th>
+					categorie.CreationTime
+				</th>
+				<th>
+					account.AccountId
+				</th>
+				<th>
+					account.Email
+				</th>
+				<th>
+					account.Password
+				</th>
+				<th>
+					account.Balance
+				</th>
+				<th>
+					account.CreationTime
+				</th>
+			</tr>
+			<tr *ngFor="let transaction of transactionService.transactions; let i = index">
+				<td>
+					{{transaction.transactionId}}
+				</td>
+				<td>
+					{{transaction.accountId}}
+				</td>
+				<td>
+					{{transaction.categoryId}}
+				</td>
+				<td>
+					{{transaction.name}}
+				</td>
+				<td>
+					{{transaction.value}}
+				</td>
+				<td>
+					{{transaction.creationTime}}
+				</td>
+				<td>
+					{{transaction.categorie.categoryId}}
+				</td>
+				<td>
+					{{transaction.categorie.name}}
+				</td>
+				<td>
+					{{transaction.categorie.creationTime}}
+				</td>
+				<td>
+					{{transaction.account.accountId}}
+				</td>
+				<td>
+					{{transaction.account.email}}
+				</td>
+				<td>
+					{{transaction.account.password}}
+				</td>
+				<td>
+					{{transaction.account.balance}}
+				</td>
+				<td>
+					{{transaction.account.creationTime}}
+				</td>
+			</tr>
+		</tbody>
+
+	</div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="card rerun">
+		<form (submit)="addAccount($event)">
+			<div class="input-container">
+			<input type="text" placeholder= "Email" id="Email" />
+			<div class="bar"></div>
+			</div>
+			<div class="input-container">
+			<input type="text" placeholder= "Password" id="Password" />
+			<div class="bar"></div>
+			</div>
+			<div class="input-container">
+			<input type="text" placeholder= "Balance" id="Balance" />
+			<div class="bar"></div>
+			</div>
+			<div class="button-container">
+				<input type="submit" style="padding:20px; background:white;color:tomato;border:2px solid tomato;" value="Add">
+			</div>
+		</form>
+
+		<tbody>
+			<tr>
+				<th>
+					AccountId
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Password
+				</th>
+				<th>
+					Balance
+				</th>
+				<th>
+					CreationTime
+				</th>
+			</tr>
+			<tr *ngFor="let account of accountService.accounts; let i = index">
+				<td>
+					{{account.accountId}}
+				</td>
+				<td>
+					{{account.email}}
+				</td>
+				<td>
+					{{account.password}}
+				</td>
+				<td>
+					{{account.balance}}
+				</td>
+				<td>
+					{{account.creationTime}}
+				</td>
+			</tr>
+		</tbody>
+
+	</div>
+</div>

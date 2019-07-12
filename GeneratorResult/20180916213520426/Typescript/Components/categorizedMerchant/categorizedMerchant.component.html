@@ -1,0 +1,91 @@
+<div class="container">
+	<div class="card rerun">
+		<form (submit)="addCategorizedMerchant($event)">
+			<select id=MerchantIdDropDown (change)="merchantChanged($event.target.value)">
+				<option [value]="merchant.merchantId" *ngFor= "let merchant of merchantService.merchants" >
+				{{merchant.merchantId}}
+				{{merchant.name}}
+				</option>
+			</select>
+			
+			<select id=CategoryIdDropDown (change)="categorieChanged($event.target.value)">
+				<option [value]="categorie.categoryId" *ngFor= "let categorie of categorieService.categories" >
+				{{categorie.categoryId}}
+				{{categorie.name}}
+				</option>
+			</select>
+			
+			<div class="button-container">
+				<input type="submit" style="padding:20px; background:white;color:tomato;border:2px solid tomato;" value="Add">
+			</div>
+		</form>
+
+		<tbody>
+			<tr>
+				<th>
+					CategorizedMerchantId
+				</th>
+				<th>
+					CategoryId
+				</th>
+				<th>
+					MerchantId
+				</th>
+				<th>
+					CreationTime
+				</th>
+				<th>
+					merchant.MerchantId
+				</th>
+				<th>
+					merchant.Name
+				</th>
+				<th>
+					merchant.CreationTime
+				</th>
+				<th>
+					categorie.CategoryId
+				</th>
+				<th>
+					categorie.Name
+				</th>
+				<th>
+					categorie.CreationTime
+				</th>
+			</tr>
+			<tr *ngFor="let categorizedMerchant of categorizedMerchantService.categorizedMerchants; let i = index">
+				<td>
+					{{categorizedMerchant.categorizedMerchantId}}
+				</td>
+				<td>
+					{{categorizedMerchant.categoryId}}
+				</td>
+				<td>
+					{{categorizedMerchant.merchantId}}
+				</td>
+				<td>
+					{{categorizedMerchant.creationTime}}
+				</td>
+				<td>
+					{{categorizedMerchant.merchant.merchantId}}
+				</td>
+				<td>
+					{{categorizedMerchant.merchant.name}}
+				</td>
+				<td>
+					{{categorizedMerchant.merchant.creationTime}}
+				</td>
+				<td>
+					{{categorizedMerchant.categorie.categoryId}}
+				</td>
+				<td>
+					{{categorizedMerchant.categorie.name}}
+				</td>
+				<td>
+					{{categorizedMerchant.categorie.creationTime}}
+				</td>
+			</tr>
+		</tbody>
+
+	</div>
+</div>

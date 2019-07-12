@@ -1,0 +1,186 @@
+------------Transactions----------
+http://192.168.0.108/Transactions.php?cmd=getTransactions - GET request -return all Transactions
+
+http://192.168.0.108/Transactions.php?cmd=getTransactionsByTransactionId&transactionId=value - GET request -return Transactions filtered by TransactionId
+
+
+http://192.168.0.108/Transactions.php?cmd=addTransaction&accountId=0&categoryId=0&name=Test&value=0 - GET request -add a new Transaction with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/Transactions.php?cmd=addTransaction- POST request with following parameters
+accountId : INT
+categoryId : INT
+name : VARCHAR(40)
+value : DOUBLE
+add a new Transaction with specified data and returns the Transaction with id != 0 if succeeded
+
+
+http://192.168.0.108/Transactions.php?cmd=updateTransaction- PUT request with following parameters
+transactionId : INT
+accountId : INT
+categoryId : INT
+name : VARCHAR(40)
+value : DOUBLE
+update a Transaction by id and returns the Transaction with id != 0 if succeeded
+
+
+http://192.168.0.108/Transactions.php?cmd=updateTransaction&transactionId=0 - DELETE request
+deletes a Transaction by id and returns the Transaction with id == 0 if succeeded
+
+
+------------Categories----------
+http://192.168.0.108/Categories.php?cmd=getCategories - GET request -return all Categories
+
+http://192.168.0.108/Categories.php?cmd=getCategoriesByCategoryId&categoryId=value - GET request -return Categories filtered by CategoryId
+
+
+http://192.168.0.108/Categories.php?cmd=addCategory&name=Test - GET request -add a new Category with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/Categories.php?cmd=addCategory- POST request with following parameters
+name : VARCHAR(40)
+add a new Category with specified data and returns the Category with id != 0 if succeeded
+
+
+http://192.168.0.108/Categories.php?cmd=updateCategory- PUT request with following parameters
+categoryId : INT
+name : VARCHAR(40)
+update a Category by id and returns the Category with id != 0 if succeeded
+
+
+http://192.168.0.108/Categories.php?cmd=updateCategory&categoryId=0 - DELETE request
+deletes a Category by id and returns the Category with id == 0 if succeeded
+
+
+------------Merchants----------
+http://192.168.0.108/Merchants.php?cmd=getMerchants - GET request -return all Merchants
+
+http://192.168.0.108/Merchants.php?cmd=getMerchantsByMerchantId&merchantId=value - GET request -return Merchants filtered by MerchantId
+
+
+http://192.168.0.108/Merchants.php?cmd=addMerchant&name=Test - GET request -add a new Merchant with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/Merchants.php?cmd=addMerchant- POST request with following parameters
+name : VARCHAR(40)
+add a new Merchant with specified data and returns the Merchant with id != 0 if succeeded
+
+
+http://192.168.0.108/Merchants.php?cmd=updateMerchant- PUT request with following parameters
+merchantId : INT
+name : VARCHAR(40)
+update a Merchant by id and returns the Merchant with id != 0 if succeeded
+
+
+http://192.168.0.108/Merchants.php?cmd=updateMerchant&merchantId=0 - DELETE request
+deletes a Merchant by id and returns the Merchant with id == 0 if succeeded
+
+
+------------CategorizedMerchants----------
+http://192.168.0.108/CategorizedMerchants.php?cmd=getCategorizedMerchants - GET request -return all CategorizedMerchants
+
+http://192.168.0.108/CategorizedMerchants.php?cmd=getCategorizedMerchantsByCategorizedMerchantId&categorizedMerchantId=value - GET request -return CategorizedMerchants filtered by CategorizedMerchantId
+
+
+http://192.168.0.108/CategorizedMerchants.php?cmd=addCategorizedMerchant&categoryId=0&merchantId=0 - GET request -add a new CategorizedMerchant with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/CategorizedMerchants.php?cmd=addCategorizedMerchant- POST request with following parameters
+categoryId : INT
+merchantId : INT
+add a new CategorizedMerchant with specified data and returns the CategorizedMerchant with id != 0 if succeeded
+
+
+http://192.168.0.108/CategorizedMerchants.php?cmd=updateCategorizedMerchant- PUT request with following parameters
+categorizedMerchantId : INT
+categoryId : INT
+merchantId : INT
+update a CategorizedMerchant by id and returns the CategorizedMerchant with id != 0 if succeeded
+
+
+http://192.168.0.108/CategorizedMerchants.php?cmd=updateCategorizedMerchant&categorizedMerchantId=0 - DELETE request
+deletes a CategorizedMerchant by id and returns the CategorizedMerchant with id == 0 if succeeded
+
+
+------------Messages----------
+http://192.168.0.108/Messages.php?cmd=getMessages - GET request -return all Messages
+
+http://192.168.0.108/Messages.php?cmd=getMessagesByMessageId&messageId=value - GET request -return Messages filtered by MessageId
+
+
+http://192.168.0.108/Messages.php?cmd=addMessage&content=Test&source=0 - GET request -add a new Message with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/Messages.php?cmd=addMessage- POST request with following parameters
+content : TEXT
+source : INT
+add a new Message with specified data and returns the Message with id != 0 if succeeded
+
+
+http://192.168.0.108/Messages.php?cmd=updateMessage- PUT request with following parameters
+messageId : INT
+content : TEXT
+source : INT
+update a Message by id and returns the Message with id != 0 if succeeded
+
+
+http://192.168.0.108/Messages.php?cmd=updateMessage&messageId=0 - DELETE request
+deletes a Message by id and returns the Message with id == 0 if succeeded
+
+
+------------Accounts----------
+http://192.168.0.108/Accounts.php?cmd=getAccounts - GET request -return all Accounts
+
+http://192.168.0.108/Accounts.php?cmd=getAccountsByEmailPassword&email=value&password=value - GET request -return Accounts filtered by Email, Password
+
+http://192.168.0.108/Accounts.php?cmd=getAccountsByAccountId&accountId=value - GET request -return Accounts filtered by AccountId
+
+
+http://192.168.0.108/Accounts.php?cmd=addAccount&email=Test&password=Test&balance=0 - GET request -add a new Account with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/Accounts.php?cmd=addAccount- POST request with following parameters
+email : VARCHAR(40)
+password : VARCHAR(40)
+balance : DOUBLE
+add a new Account with specified data and returns the Account with id != 0 if succeeded
+
+
+http://192.168.0.108/Accounts.php?cmd=updateAccount- PUT request with following parameters
+accountId : INT
+email : VARCHAR(40)
+password : VARCHAR(40)
+balance : DOUBLE
+update a Account by id and returns the Account with id != 0 if succeeded
+
+
+http://192.168.0.108/Accounts.php?cmd=updateAccount&accountId=0 - DELETE request
+deletes a Account by id and returns the Account with id == 0 if succeeded
+
+
+------------Notifications----------
+http://192.168.0.108/Notifications.php?cmd=getNotifications - GET request -return all Notifications
+
+http://192.168.0.108/Notifications.php?cmd=getNotificationsByNotificationId&notificationId=value - GET request -return Notifications filtered by NotificationId
+
+
+http://192.168.0.108/Notifications.php?cmd=addNotification&title=Test&message=Test - GET request -add a new Notification with specified data and return the item with id != 0 if was added
+
+
+http://192.168.0.108/Notifications.php?cmd=addNotification- POST request with following parameters
+title : VARCHAR(20)
+message : TEXT
+add a new Notification with specified data and returns the Notification with id != 0 if succeeded
+
+
+http://192.168.0.108/Notifications.php?cmd=updateNotification- PUT request with following parameters
+notificationId : INT
+title : VARCHAR(20)
+message : TEXT
+update a Notification by id and returns the Notification with id != 0 if succeeded
+
+
+http://192.168.0.108/Notifications.php?cmd=updateNotification&notificationId=0 - DELETE request
+deletes a Notification by id and returns the Notification with id == 0 if succeeded
+
+
