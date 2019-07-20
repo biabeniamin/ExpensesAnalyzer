@@ -8,6 +8,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { AddCategoryComponent } from '../add-category/add-category.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: HomeComponent },
@@ -16,6 +17,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'vouchers',       component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'make-payment',   component: MapsComponent },
+    { path: 'add-category',   component: AddCategoryComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
 ];

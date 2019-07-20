@@ -18,6 +18,8 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { MakePaymentComponent } from 'src/app/make-payment/make-payment.component';
 import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
+import { AddCategoryComponent } from '../add-category/add-category.component';
+
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    AddCategoryComponent
   ]
 })
 
