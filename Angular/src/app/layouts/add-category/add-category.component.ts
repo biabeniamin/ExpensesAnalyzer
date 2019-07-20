@@ -8,10 +8,19 @@ import { CategorieService } from '../../Controllers/CategorieService';
 })
 export class AddCategoryComponent implements OnInit {
 
-  constructor(
-    ) { }
+  constructor(private categorieService : CategorieService    ) { }
 
   ngOnInit() {
   }
+
+  addCategory(event)
+	{
+		event.preventDefault();
+		const target = event.target;
+		let categorie = CategorieService.GetDefaultCategorie();
+		categorie.name = target.querySelector('#Name').value;
+		console.log(categorie);
+		this.categorieService.AddCategorie(categorie);
+	}
 
 }

@@ -22,7 +22,7 @@ export class TablesComponent implements OnInit {
   constructor(private transactionService: TransactionService, private categoriesService: CategorieService) { }
     getCategory = (categorieId) => this.categories.find(category=>{
         // console.log(categorieId, category.categorieId);
-        return category.categorieId == categorieId
+        return category.categoryId == categorieId
     });
     ngOnInit() {
       this.categoriesService.GetCategories().subscribe((values:Categorie[])=>{

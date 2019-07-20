@@ -7,7 +7,7 @@ export interface Transaction
 {
 	transactionId : number;
 	accountId : number;
-	categorieId : number;
+	categoryId : number;
 	name : string;
 	value : number;
 	creationTime : string;

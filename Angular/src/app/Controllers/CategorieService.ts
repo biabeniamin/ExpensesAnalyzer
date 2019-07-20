@@ -13,7 +13,7 @@ export class CategorieService
 	static GetDefaultCategorie()
 	{
 		return {
-		categorieId : 0,
+		categoryId : 0,
 		name : 'Test',
 		creationTime : '2000-01-01 00:00:00'
 		};
@@ -22,6 +22,10 @@ export class CategorieService
 	{
 		this.categories = [CategorieService.GetDefaultCategorie()];
 		this.GetCategories();
+		this.http.get<Categorie[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getCategories").subscribe(cat => 
+			{
+				this.categories = cat;
+			});
 	
 	}
 	GetCategories()
@@ -36,10 +40,10 @@ export class CategorieService
 	
 	AddCategorie(categorie)
 	{
-		return this.http.post<Categorie>(ServerUrl.GetUrl()  + "Categories.php?cmd=addCategorie", categorie).subscribe(categorie =>
+		return this.http.post<Categorie>(ServerUrl.GetUrl()  + "Categories.php?cmd=addCategory", categorie).subscribe(categorie =>
 		{
 			console.log(categorie);
-			if(0 != categorie.categorieId)
+			if(0 != categorie.categoryId)
 			{
 				this.categories.push(categorie)
 			}

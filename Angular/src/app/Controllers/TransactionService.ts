@@ -38,7 +38,7 @@ export class TransactionService
 		return {
 		transactionId : 0,
 		accountId : 0,
-		categorieId : 0,
+		categoryId : 0,
 		name : 'Test',
 		value : 0,
 		creationTime : '2000-01-01 00:00:00',
