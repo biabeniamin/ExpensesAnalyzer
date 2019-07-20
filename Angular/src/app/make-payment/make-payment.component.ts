@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../Controllers/TransactionService';
+import { CategorieService } from '../Controllers/CategorieService';
+import { AccountService } from '../Controllers/AccountService';
 import { Transaction } from '../Models/Transaction';
 
 declare var $:any;
@@ -12,7 +14,10 @@ declare var $:any;
 export class MakePaymentComponent implements OnInit {
   name:string;
   value:number;
-  constructor(private transactionService:TransactionService) { }
+  constructor(private transactionService : TransactionService, 
+    private categorieService : CategorieService, 
+    private accountService : AccountService) { }
+
   handlePaymentSubmit(){
     if(!this.name || !this.value) return;
     const {name, value} = this;

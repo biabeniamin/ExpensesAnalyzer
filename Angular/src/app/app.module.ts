@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { NeedAuthGuard } from './Controllers/NeedAuthGuard';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
+    AddCategoryComponent,
   ],
   exports:[
   ],
