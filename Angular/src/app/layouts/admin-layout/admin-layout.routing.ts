@@ -9,6 +9,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { AddCategoryComponent } from '../add-category/add-category.component';
+import { AddMerchantComponent } from 'src/app/add-merchant/add-merchant.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: HomeComponent },
@@ -18,6 +19,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'make-payment',   component: MapsComponent },
     { path: 'add-category',   component: AddCategoryComponent },
+    { path: 'add-merchant',   component: AddMerchantComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
 ];

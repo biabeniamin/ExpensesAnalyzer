@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { NeedAuthGuard } from './Controllers/NeedAuthGuard';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { SharedModuleModule } from './shared-module/shared-module.module';
+import { AddMerchantComponent } from './add-merchant/add-merchant.component';
 
 @NgModule({
   imports: [

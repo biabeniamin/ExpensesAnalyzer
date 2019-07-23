@@ -19,6 +19,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { MakePaymentComponent } from 'src/app/make-payment/make-payment.component';
 import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 import { AddCategoryComponent } from '../add-category/add-category.component';
+import { AddMerchantComponent } from 'src/app/add-merchant/add-merchant.component';
 
 
 
@@ -40,7 +41,8 @@ import { AddCategoryComponent } from '../add-category/add-category.component';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AddMerchantComponent
   ]
 })
 

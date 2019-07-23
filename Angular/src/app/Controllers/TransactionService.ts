@@ -2,7 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import { ServerUrl } from '../Helpers/ServerUrl'
 import { Injectable } from '@angular/core';
 import { Transaction } from '../Models/Transaction'
-import { Categorie } from '../Models/Categorie'
+import { Merchant } from '../Models/Merchant'
+import { MerchantService } from './MerchantService'
 import { CategorieService } from './CategorieService'
 import { Account } from '../Models/Account'
 import { AccountService } from './AccountService'
@@ -18,15 +19,6 @@ export class TransactionService
 	{
 		return Realtimify(()=>this.http.get<Transaction[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactions"));
 	}
-	GetTransactionspPerMonth()
-	{
-		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerMonth"));
-	}
-	
-	GetTransactionspPerDay()
-	{
-		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerDay"));
-	}
 	
 	GetLastTransaction()
 	{
@@ -39,9 +31,10 @@ export class TransactionService
 		transactionId : 0,
 		accountId : 0,
 		categoryId : 0,
-		name : 'Test',
+		merchantId : 0,
 		value : 0,
 		creationTime : '2000-01-01 00:00:00',
+		merchant : MerchantService.GetDefaultMerchant(),
 		categorie : CategorieService.GetDefaultCategorie(),
 		account : AccountService.GetDefaultAccount()
 		};
@@ -53,17 +46,26 @@ export class TransactionService
 		this.GetTransactions();
 	
 	}
+
+	GetTransactionspPerMonth()
+	{
+		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerMonth"));
+	}
+	
+	GetTransactionspPerDay()
+	{
+		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerDay"));
+	}
 	
 	AddTransaction(transaction)
 	{
 		return this.http.post<Transaction>(ServerUrl.GetUrl()  + "Transactions.php?cmd=addTransaction", transaction).subscribe(transaction =>
 		{
+			console.log(transaction);
 			if(0 != transaction.transactionId)
 			{
 				this.transactions.push(transaction)
-				return true;
 			}
-			return false;
 		});
 	}
 	
