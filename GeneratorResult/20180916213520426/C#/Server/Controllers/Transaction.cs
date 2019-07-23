@@ -24,7 +24,7 @@ namespace DatabaseFunctionsGenerator
 					(int)reader["TransactionId"],
 					(int)reader["AccountId"],
 					(int)reader["CategoryId"],
-					(string)reader["Name"],
+					(int)reader["MerchantId"],
 					(double)reader["Value"],
 					(DateTime)reader["CreationTime"]
 				));
@@ -37,11 +37,11 @@ namespace DatabaseFunctionsGenerator
 		public void Post([FromBody]Transaction data)
 		{
 			DatabaseOperations db = new DatabaseOperations();
-			MySqlCommand command = new MySqlCommand("INSERT INTO Transactions(AccountId,  CategoryId,  Name,  Value,  CreationTime) VALUES(@AccountId,  @CategoryId,  @Name,  @Value,  @CreationTime)");
+			MySqlCommand command = new MySqlCommand("INSERT INTO Transactions(AccountId,  CategoryId,  MerchantId,  Value,  CreationTime) VALUES(@AccountId,  @CategoryId,  @MerchantId,  @Value,  @CreationTime)");
 			
 			command.Parameters.AddWithValue("@AccountId", data.AccountId);
 			command.Parameters.AddWithValue("@CategoryId", data.CategoryId);
-			command.Parameters.AddWithValue("@Name", data.Name);
+			command.Parameters.AddWithValue("@MerchantId", data.MerchantId);
 			command.Parameters.AddWithValue("@Value", data.Value);
 			command.Parameters.AddWithValue("@CreationTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 			

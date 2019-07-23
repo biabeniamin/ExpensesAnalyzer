@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../TransactionService'
 import {HttpClient} from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MerchantService } from '../MerchantService'
 import { CategoryService } from '../CategoryService'
 import { AccountService } from '../AccountService'
 
@@ -15,6 +16,7 @@ export class TransactionComponent implements OnInit
 	
 	constructor(private http:HttpClient, 
 		private transactionService : TransactionService, 
+		private merchantService : MerchantService, 
 		private categorieService : CategoryService, 
 		private accountService : AccountService
 	)
@@ -34,10 +36,16 @@ export class TransactionComponent implements OnInit
 		let transaction = TransactionService.GetDefaultTransaction();
 		transaction.accountId = target.querySelector('#AccountIdDropDown').value;
 		transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
-		transaction.name = target.querySelector('#Name').value;
+		transaction.merchantId = target.querySelector('#MerchantIdDropDown').value;
 		transaction.value = target.querySelector('#Value').value;
 		console.log(transaction);
 		this.transactionService.AddTransaction(transaction);
+	}
+	
+	merchantChanged(event)
+	{
+		console.log(event);
+	
 	}
 	
 	categorieChanged(event)

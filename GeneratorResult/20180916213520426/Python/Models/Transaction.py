@@ -7,7 +7,7 @@ class Transaction:
 	transactionId : int
 	accountId : int
 	categoryId : int
-	name : str
+	merchantId : int
 	value : str
 	creationTime : str
 	

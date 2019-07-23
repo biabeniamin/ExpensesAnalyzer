@@ -2,13 +2,16 @@
 	<div class="card rerun">
 		<form (submit)="addTransaction($event)">
 			<div class="input-container">
-			<input type="text" placeholder= "Name" id="Name" />
-			<div class="bar"></div>
-			</div>
-			<div class="input-container">
 			<input type="text" placeholder= "Value" id="Value" />
 			<div class="bar"></div>
 			</div>
+			<select id=MerchantIdDropDown (change)="merchantChanged($event.target.value)">
+				<option [value]="merchant.merchantId" *ngFor= "let merchant of merchantService.merchants" >
+				{{merchant.merchantId}}
+				{{merchant.name}}
+				</option>
+			</select>
+			
 			<select id=CategoryIdDropDown (change)="categorieChanged($event.target.value)">
 				<option [value]="categorie.categoryId" *ngFor= "let categorie of categorieService.categories" >
 				{{categorie.categoryId}}
@@ -42,13 +45,22 @@
 					CategoryId
 				</th>
 				<th>
-					Name
+					MerchantId
 				</th>
 				<th>
 					Value
 				</th>
 				<th>
 					CreationTime
+				</th>
+				<th>
+					merchant.MerchantId
+				</th>
+				<th>
+					merchant.Name
+				</th>
+				<th>
+					merchant.CreationTime
 				</th>
 				<th>
 					categorie.CategoryId
@@ -86,13 +98,22 @@
 					{{transaction.categoryId}}
 				</td>
 				<td>
-					{{transaction.name}}
+					{{transaction.merchantId}}
 				</td>
 				<td>
 					{{transaction.value}}
 				</td>
 				<td>
 					{{transaction.creationTime}}
+				</td>
+				<td>
+					{{transaction.merchant.merchantId}}
+				</td>
+				<td>
+					{{transaction.merchant.name}}
+				</td>
+				<td>
+					{{transaction.merchant.creationTime}}
 				</td>
 				<td>
 					{{transaction.categorie.categoryId}}

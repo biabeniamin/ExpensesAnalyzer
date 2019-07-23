@@ -16,7 +16,7 @@ CREATE TABLE `Transactions` (
 `TransactionId` INT  NOT NULL,
 `AccountId` INT  NOT NULL,
 `CategoryId` INT  NOT NULL,
-`Name` VARCHAR(40)  NOT NULL,
+`MerchantId` INT  NOT NULL,
 `Value` DOUBLE  NOT NULL,
 `CreationTime` DATETIME  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

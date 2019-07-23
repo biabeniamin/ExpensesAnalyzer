@@ -4,13 +4,13 @@ http://192.168.0.108/Transactions.php?cmd=getTransactions - GET request -return 
 http://192.168.0.108/Transactions.php?cmd=getTransactionsByTransactionId&transactionId=value - GET request -return Transactions filtered by TransactionId
 
 
-http://192.168.0.108/Transactions.php?cmd=addTransaction&accountId=0&categoryId=0&name=Test&value=0 - GET request -add a new Transaction with specified data and return the item with id != 0 if was added
+http://192.168.0.108/Transactions.php?cmd=addTransaction&accountId=0&categoryId=0&merchantId=0&value=0 - GET request -add a new Transaction with specified data and return the item with id != 0 if was added
 
 
 http://192.168.0.108/Transactions.php?cmd=addTransaction- POST request with following parameters
 accountId : INT
 categoryId : INT
-name : VARCHAR(40)
+merchantId : INT
 value : DOUBLE
 add a new Transaction with specified data and returns the Transaction with id != 0 if succeeded
 
@@ -19,7 +19,7 @@ http://192.168.0.108/Transactions.php?cmd=updateTransaction- PUT request with fo
 transactionId : INT
 accountId : INT
 categoryId : INT
-name : VARCHAR(40)
+merchantId : INT
 value : DOUBLE
 update a Transaction by id and returns the Transaction with id != 0 if succeeded
 

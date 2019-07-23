@@ -13,9 +13,10 @@ namespace DatabaseFunctionsGenerator
 		private int _transactionId;
 		private int _accountId;
 		private int _categoryId;
-		private string _name;
+		private int _merchantId;
 		private double _value;
 		private DateTime _creationTime;
+		private Merchant _merchant;
 		private Category _categorie;
 		private Account _account;
 		
@@ -58,16 +59,16 @@ namespace DatabaseFunctionsGenerator
 			}
 		}
 		
-		[JsonProperty(PropertyName = "name")]
-		public string Name
+		[JsonProperty(PropertyName = "merchantId")]
+		public int MerchantId
 		{
 			get
 			{
-				return _name;
+				return _merchantId;
 			}
 			set
 			{
-				_name = value;
+				_merchantId = value;
 			}
 		}
 		
@@ -94,6 +95,19 @@ namespace DatabaseFunctionsGenerator
 			set
 			{
 				_creationTime = value;
+			}
+		}
+		
+		[JsonProperty(PropertyName = "merchant")]
+		public Merchant Merchant
+		{
+			get
+			{
+				return _merchant;
+			}
+			set
+			{
+				_merchant = value;
 			}
 		}
 		
@@ -124,30 +138,30 @@ namespace DatabaseFunctionsGenerator
 		}
 		
 		
-		public Transaction(int transactionId, int accountId, int categoryId, string name, double value, DateTime creationTime)
+		public Transaction(int transactionId, int accountId, int categoryId, int merchantId, double value, DateTime creationTime)
 		{
 			_transactionId = transactionId;
 			_accountId = accountId;
 			_categoryId = categoryId;
-			_name = name;
+			_merchantId = merchantId;
 			_value = value;
 			_creationTime = creationTime;
 		}
 		
-		public Transaction(int accountId, int categoryId, string name, double value)
+		public Transaction(int accountId, int categoryId, int merchantId, double value)
 		{
 			_accountId = accountId;
 			_categoryId = categoryId;
-			_name = name;
+			_merchantId = merchantId;
 			_value = value;
 		}
 		
-		public Transaction(int accountId, int categoryId, string name, double value, Category categorie, Account account)
-			:this(accountId, categoryId, name, value)
+		public Transaction(int accountId, int categoryId, int merchantId, double value, Merchant merchant, Category categorie, Account account)
+			:this(accountId, categoryId, merchantId, value)
 		{
 			_accountId = accountId;
 			_categoryId = categoryId;
-			_name = name;
+			_merchantId = merchantId;
 			_value = value;
 		}
 		
@@ -155,7 +169,7 @@ namespace DatabaseFunctionsGenerator
 			 :this(
 				0, //AccountId
 				0, //CategoryId
-				"Test", //Name
+				0, //MerchantId
 				0 //Value
 			)
 		{

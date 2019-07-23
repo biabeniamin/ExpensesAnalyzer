@@ -27,7 +27,7 @@ public class TransactionAdapter extends BaseAdapter
 		TextView transactionIdTextBox;
 		TextView accountIdTextBox;
 		TextView categoryIdTextBox;
-		TextView nameTextBox;
+		TextView merchantIdTextBox;
 		TextView valueTextBox;
 		TextView creationTimeTextBox;
 		
@@ -41,14 +41,14 @@ public class TransactionAdapter extends BaseAdapter
 		transactionIdTextBox = (TextView) convertView.findViewById(R.id.transactionIdTextBox);
 		accountIdTextBox = (TextView) convertView.findViewById(R.id.accountIdTextBox);
 		categoryIdTextBox = (TextView) convertView.findViewById(R.id.categoryIdTextBox);
-		nameTextBox = (TextView) convertView.findViewById(R.id.nameTextBox);
+		merchantIdTextBox = (TextView) convertView.findViewById(R.id.merchantIdTextBox);
 		valueTextBox = (TextView) convertView.findViewById(R.id.valueTextBox);
 		creationTimeTextBox = (TextView) convertView.findViewById(R.id.creationTimeTextBox);
 		
 		transactionIdTextBox.setText(transaction.getTransactionId().toString());
 		accountIdTextBox.setText(transaction.getAccountId().toString());
 		categoryIdTextBox.setText(transaction.getCategoryId().toString());
-		nameTextBox.setText(transaction.getName());
+		merchantIdTextBox.setText(transaction.getMerchantId().toString());
 		valueTextBox.setText(transaction.getValue().toString());
 		creationTimeTextBox.setText(transaction.getCreationTime().toString());
 		

@@ -17,9 +17,10 @@ public class Transaction
 	private Integer  transactionId;
 	private Integer  accountId;
 	private Integer  categoryId;
-	private String name;
+	private Integer  merchantId;
 	private double value;
 	private Date creationTime;
+	private Merchant merchant;
 	private Category categorie;
 	private Account account;
 	
@@ -53,14 +54,14 @@ public class Transaction
 		this.categoryId = categoryId;
 	}
 	
-	public String getName()
+	public Integer  getMerchantId()
 	{
-		return this.name;
+		return this.merchantId;
 	}
 	
-	public void setName(String name)
+	public void setMerchantId(Integer  merchantId)
 	{
-		this.name = name;
+		this.merchantId = merchantId;
 	}
 	
 	public double getValue()
@@ -81,6 +82,16 @@ public class Transaction
 	public void setCreationTime(Date creationTime)
 	{
 		this.creationTime = creationTime;
+	}
+	
+	public Merchant getMerchant()
+	{
+		return this.merchant;
+	}
+	
+	public void setMerchant(Merchant merchant)
+	{
+		this.merchant = merchant;
 	}
 	
 	public Category getCategory()
@@ -104,22 +115,23 @@ public class Transaction
 	}
 	
 	
-	public Transaction(Integer  accountId, Integer  categoryId, String name, double value)
+	public Transaction(Integer  accountId, Integer  categoryId, Integer  merchantId, double value)
 	{
 		this.accountId = accountId;
 		this.categoryId = categoryId;
-		this.name = name;
+		this.merchantId = merchantId;
 		this.value = value;
 	}
 	
-	public Transaction(Integer  accountId, Integer  categoryId, String name, double value, Category categorie, Account account)
+	public Transaction(Integer  accountId, Integer  categoryId, Integer  merchantId, double value, Merchant merchant, Category categorie, Account account)
 	{
 		this(
 			0, //AccountId
 			0, //CategoryId
-			"Test", //Name
+			0, //MerchantId
 			0 //Value
 		);
+		this.merchant = merchant;
 		this.categorie = categorie;
 		this.account = account;
 	
@@ -130,7 +142,7 @@ public class Transaction
 		this(
 			0, //AccountId
 			0, //CategoryId
-			"Test", //Name
+			0, //MerchantId
 			0 //Value
 		);
 		this.transactionId = 0;

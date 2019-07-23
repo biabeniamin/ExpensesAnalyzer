@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import { ServerUrl } from './ServerUrl'
 import { Injectable } from '@angular/core';
 import { Transaction } from '../app/Models/Transaction'
+import { Merchant } from '../app/Models/Merchant'
+import { MerchantService } from './MerchantService'
 import { Category } from '../app/Models/Category'
 import { CategoryService } from './CategoryService'
 import { Account } from '../app/Models/Account'
@@ -32,9 +34,10 @@ export class TransactionService
 		transactionId : 0,
 		accountId : 0,
 		categoryId : 0,
-		name : 'Test',
+		merchantId : 0,
 		value : 0,
 		creationTime : '2000-01-01 00:00:00',
+		merchant : MerchantService.GetDefaultMerchant(),
 		categorie : CategoryService.GetDefaultCategory(),
 		account : AccountService.GetDefaultAccount()
 		};
