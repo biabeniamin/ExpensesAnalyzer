@@ -16,12 +16,10 @@ public class Transaction
 {
 	private Integer  transactionId;
 	private Integer  accountId;
-	private Integer  categoryId;
 	private Integer  merchantId;
 	private double value;
 	private Date creationTime;
 	private Merchant merchant;
-	private Category categorie;
 	private Account account;
 	
 	public Integer  getTransactionId()
@@ -42,16 +40,6 @@ public class Transaction
 	public void setAccountId(Integer  accountId)
 	{
 		this.accountId = accountId;
-	}
-	
-	public Integer  getCategoryId()
-	{
-		return this.categoryId;
-	}
-	
-	public void setCategoryId(Integer  categoryId)
-	{
-		this.categoryId = categoryId;
 	}
 	
 	public Integer  getMerchantId()
@@ -94,16 +82,6 @@ public class Transaction
 		this.merchant = merchant;
 	}
 	
-	public Category getCategory()
-	{
-		return this.categorie;
-	}
-	
-	public void setCategory(Category categorie)
-	{
-		this.categorie = categorie;
-	}
-	
 	public Account getAccount()
 	{
 		return this.account;
@@ -115,24 +93,21 @@ public class Transaction
 	}
 	
 	
-	public Transaction(Integer  accountId, Integer  categoryId, Integer  merchantId, double value)
+	public Transaction(Integer  accountId, Integer  merchantId, double value)
 	{
 		this.accountId = accountId;
-		this.categoryId = categoryId;
 		this.merchantId = merchantId;
 		this.value = value;
 	}
 	
-	public Transaction(Integer  accountId, Integer  categoryId, Integer  merchantId, double value, Merchant merchant, Category categorie, Account account)
+	public Transaction(Integer  accountId, Integer  merchantId, double value, Merchant merchant, Account account)
 	{
 		this(
 			0, //AccountId
-			0, //CategoryId
 			0, //MerchantId
 			0 //Value
 		);
 		this.merchant = merchant;
-		this.categorie = categorie;
 		this.account = account;
 	
 	}
@@ -141,7 +116,6 @@ public class Transaction
 	{
 		this(
 			0, //AccountId
-			0, //CategoryId
 			0, //MerchantId
 			0 //Value
 		);

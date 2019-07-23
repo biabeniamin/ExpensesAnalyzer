@@ -8,14 +8,8 @@
 			<select id=MerchantIdDropDown (change)="merchantChanged($event.target.value)">
 				<option [value]="merchant.merchantId" *ngFor= "let merchant of merchantService.merchants" >
 				{{merchant.merchantId}}
+				{{merchant.categoryId}}
 				{{merchant.name}}
-				</option>
-			</select>
-			
-			<select id=CategoryIdDropDown (change)="categorieChanged($event.target.value)">
-				<option [value]="categorie.categoryId" *ngFor= "let categorie of categorieService.categories" >
-				{{categorie.categoryId}}
-				{{categorie.name}}
 				</option>
 			</select>
 			
@@ -42,9 +36,6 @@
 					AccountId
 				</th>
 				<th>
-					CategoryId
-				</th>
-				<th>
 					MerchantId
 				</th>
 				<th>
@@ -57,19 +48,13 @@
 					merchant.MerchantId
 				</th>
 				<th>
+					merchant.CategoryId
+				</th>
+				<th>
 					merchant.Name
 				</th>
 				<th>
 					merchant.CreationTime
-				</th>
-				<th>
-					categorie.CategoryId
-				</th>
-				<th>
-					categorie.Name
-				</th>
-				<th>
-					categorie.CreationTime
 				</th>
 				<th>
 					account.AccountId
@@ -95,9 +80,6 @@
 					{{transaction.accountId}}
 				</td>
 				<td>
-					{{transaction.categoryId}}
-				</td>
-				<td>
 					{{transaction.merchantId}}
 				</td>
 				<td>
@@ -110,19 +92,13 @@
 					{{transaction.merchant.merchantId}}
 				</td>
 				<td>
+					{{transaction.merchant.categoryId}}
+				</td>
+				<td>
 					{{transaction.merchant.name}}
 				</td>
 				<td>
 					{{transaction.merchant.creationTime}}
-				</td>
-				<td>
-					{{transaction.categorie.categoryId}}
-				</td>
-				<td>
-					{{transaction.categorie.name}}
-				</td>
-				<td>
-					{{transaction.categorie.creationTime}}
 				</td>
 				<td>
 					{{transaction.account.accountId}}

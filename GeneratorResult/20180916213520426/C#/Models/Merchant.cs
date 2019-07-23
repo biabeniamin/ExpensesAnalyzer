@@ -11,8 +11,10 @@ namespace DatabaseFunctionsGenerator
 	public class Merchant
 	{
 		private int _merchantId;
+		private int _categoryId;
 		private string _name;
 		private DateTime _creationTime;
+		private Category _categorie;
 		
 		[JsonProperty(PropertyName = "merchantId")]
 		public int MerchantId
@@ -24,6 +26,19 @@ namespace DatabaseFunctionsGenerator
 			set
 			{
 				_merchantId = value;
+			}
+		}
+		
+		[JsonProperty(PropertyName = "categoryId")]
+		public int CategoryId
+		{
+			get
+			{
+				return _categoryId;
+			}
+			set
+			{
+				_categoryId = value;
 			}
 		}
 		
@@ -53,21 +68,44 @@ namespace DatabaseFunctionsGenerator
 			}
 		}
 		
+		[JsonProperty(PropertyName = "categorie")]
+		public Category Category
+		{
+			get
+			{
+				return _categorie;
+			}
+			set
+			{
+				_categorie = value;
+			}
+		}
 		
-		public Merchant(int merchantId, string name, DateTime creationTime)
+		
+		public Merchant(int merchantId, int categoryId, string name, DateTime creationTime)
 		{
 			_merchantId = merchantId;
+			_categoryId = categoryId;
 			_name = name;
 			_creationTime = creationTime;
 		}
 		
-		public Merchant(string name)
+		public Merchant(int categoryId, string name)
 		{
+			_categoryId = categoryId;
+			_name = name;
+		}
+		
+		public Merchant(int categoryId, string name, Category categorie)
+			:this(categoryId, name)
+		{
+			_categoryId = categoryId;
 			_name = name;
 		}
 		
 		public Merchant()
 			 :this(
+				0, //CategoryId
 				"Test" //Name
 			)
 		{

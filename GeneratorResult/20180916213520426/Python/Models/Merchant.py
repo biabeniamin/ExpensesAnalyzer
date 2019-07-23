@@ -5,6 +5,7 @@ from dataclasses import dataclass
 @dataclass
 class Merchant:
 	merchantId : int
+	categoryId : int
 	name : str
 	creationTime : str
 	

@@ -6,7 +6,6 @@ from dataclasses import dataclass
 class Transaction:
 	transactionId : int
 	accountId : int
-	categoryId : int
 	merchantId : int
 	value : str
 	creationTime : str

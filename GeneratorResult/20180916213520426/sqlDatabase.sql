@@ -7,7 +7,6 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS`Transactions`;
 DROP TABLE IF EXISTS`Categories`;
 DROP TABLE IF EXISTS`Merchants`;
-DROP TABLE IF EXISTS`CategorizedMerchants`;
 DROP TABLE IF EXISTS`Messages`;
 DROP TABLE IF EXISTS`Accounts`;
 DROP TABLE IF EXISTS`Notifications`;
@@ -15,7 +14,6 @@ DROP TABLE IF EXISTS`Notifications`;
 CREATE TABLE `Transactions` (
 `TransactionId` INT  NOT NULL,
 `AccountId` INT  NOT NULL,
-`CategoryId` INT  NOT NULL,
 `MerchantId` INT  NOT NULL,
 `Value` DOUBLE  NOT NULL,
 `CreationTime` DATETIME  NOT NULL
@@ -35,22 +33,13 @@ ALTER TABLE `Categories`  MODIFY `CategoryId` int NOT NULL AUTO_INCREMENT, AUTO_
 
 CREATE TABLE `Merchants` (
 `MerchantId` INT  NOT NULL,
+`CategoryId` INT  NOT NULL,
 `Name` VARCHAR(40)  NOT NULL,
 `CreationTime` DATETIME  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `Merchants` ADD PRIMARY KEY(`MerchantId`); 
 ALTER TABLE `Merchants`  MODIFY `MerchantId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1; 
-
-CREATE TABLE `CategorizedMerchants` (
-`CategorizedMerchantId` INT  NOT NULL,
-`CategoryId` INT  NOT NULL,
-`MerchantId` INT  NOT NULL,
-`CreationTime` DATETIME  NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-ALTER TABLE `CategorizedMerchants` ADD PRIMARY KEY(`CategorizedMerchantId`); 
-ALTER TABLE `CategorizedMerchants`  MODIFY `CategorizedMerchantId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1; 
 
 CREATE TABLE `Messages` (
 `MessageId` INT  NOT NULL,

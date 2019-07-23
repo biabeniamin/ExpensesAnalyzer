@@ -22,6 +22,7 @@ namespace DatabaseFunctionsGenerator
 			{
 				list.Add(new Merchant(
 					(int)reader["MerchantId"],
+					(int)reader["CategoryId"],
 					(string)reader["Name"],
 					(DateTime)reader["CreationTime"]
 				));
@@ -34,8 +35,9 @@ namespace DatabaseFunctionsGenerator
 		public void Post([FromBody]Merchant data)
 		{
 			DatabaseOperations db = new DatabaseOperations();
-			MySqlCommand command = new MySqlCommand("INSERT INTO Merchants(Name,  CreationTime) VALUES(@Name,  @CreationTime)");
+			MySqlCommand command = new MySqlCommand("INSERT INTO Merchants(CategoryId,  Name,  CreationTime) VALUES(@CategoryId,  @Name,  @CreationTime)");
 			
+			command.Parameters.AddWithValue("@CategoryId", data.CategoryId);
 			command.Parameters.AddWithValue("@Name", data.Name);
 			command.Parameters.AddWithValue("@CreationTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 			

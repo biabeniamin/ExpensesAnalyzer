@@ -6,6 +6,7 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 require_once 'Models/Merchant.php';
 require_once 'DatabaseOperations.php';
 require_once 'Helpers.php';
+require_once 'Categories.php';
 function ConvertListToMerchants($data)
 {
 	$merchants = [];
@@ -13,6 +14,7 @@ function ConvertListToMerchants($data)
 	foreach($data as $row)
 	{
 		$merchant = new Merchant(
+		$row["CategoryId"], 
 		$row["Name"] 
 		);
 	
@@ -29,6 +31,7 @@ function GetMerchants($database)
 {
 	$data = $database->ReadData("SELECT * FROM Merchants");
 	$merchants = ConvertListToMerchants($data);
+	$merchants = CompleteCategories($database, $merchants);
 	return $merchants;
 }
 
@@ -40,6 +43,7 @@ function GetMerchantsByMerchantId($database, $merchantId)
 	{
 		return [GetEmptyMerchant()];
 	}
+	CompleteCategories($database, $merchants);
 	return $merchants;
 }
 
@@ -77,7 +81,8 @@ function CompleteMerchants($database, $merchants)
 
 function AddMerchant($database, $merchant)
 {
-	$query = "INSERT INTO Merchants(Name, CreationTime) VALUES(";
+	$query = "INSERT INTO Merchants(CategoryId, Name, CreationTime) VALUES(";
+	$query = $query . mysqli_real_escape_string($database->connection ,$merchant->GetCategoryId()).", ";
 	$query = $query . "'" . mysqli_real_escape_string($database->connection ,$merchant->GetName()) . "', ";
 	$query = $query . "NOW()"."";
 	
@@ -86,6 +91,7 @@ function AddMerchant($database, $merchant)
 	$id = $database->GetLastInsertedId();
 	$merchant->SetMerchantId($id);
 	$merchant->SetCreationTime(date('Y-m-d H:i:s'));
+	$merchant->SetCategory(GetCategoriesByCategoryId($database, $merchant->GetCategoryId())[0]);
 	return $merchant;
 	
 }
@@ -110,6 +116,7 @@ function DeleteMerchant($database, $merchantId)
 function UpdateMerchant($database, $merchant)
 {
 	$query = "UPDATE Merchants SET ";
+	$query = $query . "CategoryId=" . $merchant->GetCategoryId().", ";
 	$query = $query . "Name='" . $merchant->GetName() . "'";
 	$query = $query . " WHERE MerchantId=" . $merchant->GetMerchantId();
 	
@@ -125,6 +132,7 @@ function UpdateMerchant($database, $merchant)
 function TestAddMerchant($database)
 {
 	$merchant = new Merchant(
+		0,//CategoryId
 		'Test'//Name
 	);
 	
@@ -134,6 +142,7 @@ function TestAddMerchant($database)
 function GetEmptyMerchant()
 {
 	$merchant = new Merchant(
+		0,//CategoryId
 		''//Name
 	);
 	
@@ -171,11 +180,13 @@ if(CheckGetParameters(["cmd"]))
 	else if("addMerchant" == $_GET["cmd"])
 	{
 		if(CheckGetParameters([
+			'categoryId',
 			'name'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$merchant = new Merchant(
+				$_GET['categoryId'],
 				$_GET['name']
 			);
 		
@@ -191,11 +202,13 @@ if(CheckGetParameters(["cmd"]))
 	if("addMerchant" == $_GET["cmd"])
 	{
 		if(CheckPostParameters([
+			'categoryId',
 			'name'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$merchant = new Merchant(
+				$_POST['categoryId'],
 				$_POST['name']
 			);
 	
@@ -211,6 +224,7 @@ if(CheckGetParameters(["cmd"]))
 	{
 		$database = new DatabaseOperations();
 		$merchant = new Merchant(
+			$_POST['categoryId'],
 			$_POST['name']
 		);
 		$merchant->SetMerchantId($_POST['merchantId']);
@@ -241,6 +255,7 @@ function GetLastMerchant($database)
 {
 	$data = $database->ReadData("SELECT * FROM Merchants ORDER BY CreationTime DESC LIMIT 1");
 	$merchants = ConvertListToMerchants($data);
+	$merchants = CompleteCategories($database, $merchants);
 	return $merchants;
 }
 

@@ -5,6 +5,13 @@
 			<input type="text" placeholder= "Name" id="Name" />
 			<div class="bar"></div>
 			</div>
+			<select id=CategoryIdDropDown (change)="categorieChanged($event.target.value)">
+				<option [value]="categorie.categoryId" *ngFor= "let categorie of categorieService.categories" >
+				{{categorie.categoryId}}
+				{{categorie.name}}
+				</option>
+			</select>
+			
 			<div class="button-container">
 				<input type="submit" style="padding:20px; background:white;color:tomato;border:2px solid tomato;" value="Add">
 			</div>
@@ -16,10 +23,22 @@
 					MerchantId
 				</th>
 				<th>
+					CategoryId
+				</th>
+				<th>
 					Name
 				</th>
 				<th>
 					CreationTime
+				</th>
+				<th>
+					categorie.CategoryId
+				</th>
+				<th>
+					categorie.Name
+				</th>
+				<th>
+					categorie.CreationTime
 				</th>
 			</tr>
 			<tr *ngFor="let merchant of merchantService.merchants; let i = index">
@@ -27,10 +46,22 @@
 					{{merchant.merchantId}}
 				</td>
 				<td>
+					{{merchant.categoryId}}
+				</td>
+				<td>
 					{{merchant.name}}
 				</td>
 				<td>
 					{{merchant.creationTime}}
+				</td>
+				<td>
+					{{merchant.categorie.categoryId}}
+				</td>
+				<td>
+					{{merchant.categorie.name}}
+				</td>
+				<td>
+					{{merchant.categorie.creationTime}}
 				</td>
 			</tr>
 		</tbody>

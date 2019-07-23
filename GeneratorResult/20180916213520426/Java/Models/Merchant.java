@@ -15,8 +15,10 @@ import java.util.Date;
 public class Merchant
 {
 	private Integer  merchantId;
+	private Integer  categoryId;
 	private String name;
 	private Date creationTime;
+	private Category categorie;
 	
 	public Integer  getMerchantId()
 	{
@@ -26,6 +28,16 @@ public class Merchant
 	public void setMerchantId(Integer  merchantId)
 	{
 		this.merchantId = merchantId;
+	}
+	
+	public Integer  getCategoryId()
+	{
+		return this.categoryId;
+	}
+	
+	public void setCategoryId(Integer  categoryId)
+	{
+		this.categoryId = categoryId;
 	}
 	
 	public String getName()
@@ -48,15 +60,37 @@ public class Merchant
 		this.creationTime = creationTime;
 	}
 	
-	
-	public Merchant(String name)
+	public Category getCategory()
 	{
+		return this.categorie;
+	}
+	
+	public void setCategory(Category categorie)
+	{
+		this.categorie = categorie;
+	}
+	
+	
+	public Merchant(Integer  categoryId, String name)
+	{
+		this.categoryId = categoryId;
 		this.name = name;
+	}
+	
+	public Merchant(Integer  categoryId, String name, Category categorie)
+	{
+		this(
+			0, //CategoryId
+			"Test" //Name
+		);
+		this.categorie = categorie;
+	
 	}
 	
 	public Merchant()
 	{
 		this(
+			0, //CategoryId
 			"Test" //Name
 		);
 		this.merchantId = 0;

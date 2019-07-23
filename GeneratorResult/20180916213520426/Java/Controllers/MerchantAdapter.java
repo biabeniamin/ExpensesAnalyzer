@@ -25,6 +25,7 @@ public class MerchantAdapter extends BaseAdapter
 	{
 		Merchant merchant;
 		TextView merchantIdTextBox;
+		TextView categoryIdTextBox;
 		TextView nameTextBox;
 		TextView creationTimeTextBox;
 		
@@ -36,10 +37,12 @@ public class MerchantAdapter extends BaseAdapter
 		}
 		
 		merchantIdTextBox = (TextView) convertView.findViewById(R.id.merchantIdTextBox);
+		categoryIdTextBox = (TextView) convertView.findViewById(R.id.categoryIdTextBox);
 		nameTextBox = (TextView) convertView.findViewById(R.id.nameTextBox);
 		creationTimeTextBox = (TextView) convertView.findViewById(R.id.creationTimeTextBox);
 		
 		merchantIdTextBox.setText(merchant.getMerchantId().toString());
+		categoryIdTextBox.setText(merchant.getCategoryId().toString());
 		nameTextBox.setText(merchant.getName());
 		creationTimeTextBox.setText(merchant.getCreationTime().toString());
 		
