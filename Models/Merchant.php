@@ -1,10 +1,13 @@
 <?php
 //generated automatically
+require_once 'Category.php';
 class Merchant
 {
 	var $merchantId;
+	var $categoryId;
 	var $name;
 	var $creationTime;
+	var $categorie;
 
 	function GetMerchantId()
 	{
@@ -13,6 +16,15 @@ class Merchant
 	function SetMerchantId($value)
 	{
 		$this->merchantId = $value;
+	}
+	
+	function GetCategoryId()
+	{
+		return $this->categoryId;
+	}
+	function SetCategoryId($value)
+	{
+		$this->categoryId = $value;
 	}
 	
 	function GetName()
@@ -33,11 +45,21 @@ class Merchant
 		$this->creationTime = $value;
 	}
 	
+	function GetCategory()
+	{
+		return $this->categorie;
+	}
+	function SetCategory($value)
+	{
+		$this->categorie = $value;
+	}
+	
 
-	function Merchant($Name)
+	function Merchant($CategoryId, $Name)
 	{
 		$this->merchantId = 0;
 	
+		$this->categoryId = $CategoryId;
 		$this->name = $Name;
 	}
 

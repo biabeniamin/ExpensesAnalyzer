@@ -1,18 +1,15 @@
 <?php
 //generated automatically
 require_once 'Merchant.php';
-require_once 'Category.php';
 require_once 'Account.php';
 class Transaction
 {
 	var $transactionId;
 	var $accountId;
-	var $categoryId;
 	var $merchantId;
 	var $value;
 	var $creationTime;
 	var $merchant;
-	var $categorie;
 	var $account;
 
 	function GetTransactionId()
@@ -31,15 +28,6 @@ class Transaction
 	function SetAccountId($value)
 	{
 		$this->accountId = $value;
-	}
-	
-	function GetCategoryId()
-	{
-		return $this->categoryId;
-	}
-	function SetCategoryId($value)
-	{
-		$this->categoryId = $value;
 	}
 	
 	function GetMerchantId()
@@ -78,15 +66,6 @@ class Transaction
 		$this->merchant = $value;
 	}
 	
-	function GetCategory()
-	{
-		return $this->categorie;
-	}
-	function SetCategory($value)
-	{
-		$this->categorie = $value;
-	}
-	
 	function GetAccount()
 	{
 		return $this->account;
@@ -97,12 +76,11 @@ class Transaction
 	}
 	
 
-	function Transaction($AccountId, $CategoryId, $MerchantId, $Value)
+	function Transaction($AccountId, $MerchantId, $Value)
 	{
 		$this->transactionId = 0;
 	
 		$this->accountId = $AccountId;
-		$this->categoryId = $CategoryId;
 		$this->merchantId = $MerchantId;
 		$this->value = $Value;
 	}
