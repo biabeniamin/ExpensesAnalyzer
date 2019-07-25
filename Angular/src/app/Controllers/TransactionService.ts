@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Transaction } from '../Models/Transaction'
 import { Merchant } from '../Models/Merchant'
 import { MerchantService } from './MerchantService'
-import { CategorieService } from './CategorieService'
 import { Account } from '../Models/Account'
 import { AccountService } from './AccountService'
 import Realtimify from '../Helpers/Realtimify';
@@ -19,6 +18,15 @@ export class TransactionService
 	{
 		return Realtimify(()=>this.http.get<Transaction[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactions"));
 	}
+	GetTransactionspPerMonth()
+	{
+		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerMonth"));
+	}
+	
+	GetTransactionspPerDay()
+	{
+		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerDay"));
+	}
 	
 	GetLastTransaction()
 	{
@@ -30,12 +38,10 @@ export class TransactionService
 		return {
 		transactionId : 0,
 		accountId : 0,
-		categoryId : 0,
 		merchantId : 0,
 		value : 0,
 		creationTime : '2000-01-01 00:00:00',
 		merchant : MerchantService.GetDefaultMerchant(),
-		categorie : CategorieService.GetDefaultCategorie(),
 		account : AccountService.GetDefaultAccount()
 		};
 	}
@@ -44,17 +50,7 @@ export class TransactionService
 	{
 		this.transactions = [TransactionService.GetDefaultTransaction()];
 		this.GetTransactions();
-	
-	}
-
-	GetTransactionspPerMonth()
-	{
-		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerMonth"));
-	}
-	
-	GetTransactionspPerDay()
-	{
-		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerDay"));
+	 
 	}
 	
 	AddTransaction(transaction)

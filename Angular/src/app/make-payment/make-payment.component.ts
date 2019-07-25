@@ -58,7 +58,7 @@ export class MakePaymentComponent implements OnInit {
 		const target = event.target;
 		let transaction = TransactionService.GetDefaultTransaction();
 		transaction.accountId = target.querySelector('#AccountIdDropDown').value;
-		transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
+		//transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
 		//transaction.name = target.querySelector('#Name').value;
 		transaction.value = target.querySelector('#Value').value;
 		console.log(transaction);

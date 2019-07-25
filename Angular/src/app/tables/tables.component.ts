@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../Controllers/TransactionService';
 import { CategorieService } from '../Controllers/CategorieService';
-import { Categorie } from '../Models/Categorie';
 import { monthNames } from '../home/home.component';
+import { Category } from '../Models/Category';
 
 declare interface TableData {
     headerRow: string[];
@@ -15,7 +15,7 @@ declare interface TableData {
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent implements OnInit {
-    public categories: Categorie[] = [];
+    public categories: Category[] = [];
     public tableData1: TableData;
     public currentValues: any[] = [];
 
@@ -25,7 +25,7 @@ export class TablesComponent implements OnInit {
         return category.categoryId == categorieId
     });
     ngOnInit() {
-      this.categoriesService.GetCategories().subscribe((values:Categorie[])=>{
+      this.categoriesService.GetCategories().subscribe((values:Category[])=>{
           this.categories = values;
       })
       this.transactionService.GetTransactions().subscribe((values:any[])=>{

@@ -1,13 +1,10 @@
 //generated automatically
 import { log } from 'util';
 import { Injectable } from '@angular/core'
-import { Category } from './/Category'
-export interface Merchant
+export interface Category
 {
-	merchantId : number;
 	categoryId : number;
 	name : string;
 	creationTime : string;
-	categorie : Category;
 
 }

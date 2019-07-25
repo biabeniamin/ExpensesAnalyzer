@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { ServerUrl } from '../Helpers/ServerUrl'
 import { Injectable } from '@angular/core';
-import { Categorie } from '../Models/Categorie'
+import { Category } from '../Models/Category'
 import Realtimify from '../Helpers/Realtimify';
 
 @Injectable({
@@ -9,7 +9,7 @@ import Realtimify from '../Helpers/Realtimify';
 })
 export class CategorieService
 {
-	public categories : Categorie[];
+	public categories : Category[];
 	static GetDefaultCategorie()
 	{
 		return {
@@ -22,7 +22,7 @@ export class CategorieService
 	{
 		this.categories = [CategorieService.GetDefaultCategorie()];
 		this.GetCategories();
-		this.http.get<Categorie[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getCategories").subscribe(cat => 
+		this.http.get<Category[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getCategories").subscribe(cat => 
 			{
 				this.categories = cat;
 			});
@@ -30,17 +30,17 @@ export class CategorieService
 	}
 	GetCategories()
 	{
-		return Realtimify(()=> this.http.get<Categorie[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getCategories"));
+		return Realtimify(()=> this.http.get<Category[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getCategories"));
 	}
 	GetCategoryByValue()
 	{
-		return Realtimify(()=> this.http.get<Categorie[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getByValue"));
+		return Realtimify(()=> this.http.get<Category[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getByValue"));
 	}
 
 	
 	AddCategorie(categorie)
 	{
-		return this.http.post<Categorie>(ServerUrl.GetUrl()  + "Categories.php?cmd=addCategory", categorie).subscribe(categorie =>
+		return this.http.post<Category>(ServerUrl.GetUrl()  + "Categories.php?cmd=addCategory", categorie).subscribe(categorie =>
 		{
 			console.log(categorie);
 			if(0 != categorie.categoryId)
@@ -52,7 +52,7 @@ export class CategorieService
 	
 	UpdateCategorie(categorie)
 	{
-		return this.http.put<Categorie>(ServerUrl.GetUrl()  + "Categories.php?cmd=updateCategorie", categorie).subscribe(categorie =>
+		return this.http.put<Category>(ServerUrl.GetUrl()  + "Categories.php?cmd=updateCategorie", categorie).subscribe(categorie =>
 		{
 			console.log(categorie);
 			return categorie;
@@ -61,7 +61,7 @@ export class CategorieService
 	
 	DeleteCategorie(categorie)
 	{
-		return this.http.delete<Categorie>(ServerUrl.GetUrl()  + "Categories.php?cmd=deleteCategorie&categorieId=" +  categorie.categorieId, ).subscribe(categorie =>
+		return this.http.delete<Category>(ServerUrl.GetUrl()  + "Categories.php?cmd=deleteCategorie&categorieId=" +  categorie.categorieId, ).subscribe(categorie =>
 		{
 			console.log(categorie);
 			return categorie;
@@ -70,7 +70,7 @@ export class CategorieService
 	
 	GetCategoriesByCategorieId(categorieId)
 	{
-		return this.http.get<Categorie[]>(ServerUrl.GetUrl()  + `Categories.php?cmd=getCategoriesByCategorieId&categorieId=${categorieId}`);
+		return this.http.get<Category[]>(ServerUrl.GetUrl()  + `Categories.php?cmd=getCategoriesByCategorieId&categorieId=${categorieId}`);
 	}
 	
 

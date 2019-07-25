@@ -2,6 +2,9 @@ import {HttpClient} from '@angular/common/http';
 import { ServerUrl } from '../Helpers/ServerUrl'
 import { Injectable } from '@angular/core';
 import { Merchant } from '../Models/Merchant'
+import { Category } from '../Models/Category' 
+import { CategorieService } from './CategorieService';
+//import { CategoryService } from './CategoryService'
 
 @Injectable({
     providedIn : 'root'
@@ -26,8 +29,10 @@ export class MerchantService
 	{
 		return {
 		merchantId : 0,
+		categoryId : 0,
 		name : 'Test',
-		creationTime : '2000-01-01 00:00:00'
+		creationTime : '2000-01-01 00:00:00',
+		categorie : CategorieService.GetDefaultCategorie()
 		};
 	}
 	

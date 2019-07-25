@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { CategorizedMerchant } from '../Models/CategorizedMerchant'
 import { Merchant } from '../Models/Merchant'
 import { MerchantService } from './MerchantService'
-import { Categorie } from '../Models/Categorie'
+import { Category } from '../Models/Category'
 import { CategorieService } from './CategorieService'
 
 @Injectable({

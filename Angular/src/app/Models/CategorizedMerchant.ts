@@ -2,7 +2,7 @@
 import { log } from 'util';
 import { Injectable } from '@angular/core'
 import { Merchant } from './/Merchant'
-import { Categorie } from './/Categorie'
+import { Category } from './/Category'
 export interface CategorizedMerchant
 {
 	categorizedMerchantId : number;
@@ -10,6 +10,6 @@ export interface CategorizedMerchant
 	merchantId : number;
 	creationTime : string;
 	merchant : Merchant;
-	categorie : Categorie;
+	categorie : Category;
 
 }

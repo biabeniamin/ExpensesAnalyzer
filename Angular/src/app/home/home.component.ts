@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import * as Chartist from 'chartist';
-import { Categorie } from '../Models/Categorie';
 import { CategorieService } from '../Controllers/CategorieService';
 import { TransactionService } from '../Controllers/TransactionService';
 
