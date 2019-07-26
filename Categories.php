@@ -155,6 +155,12 @@ function GetTransactionValuePerMonth($database)
 	return $data;
 }
 
+function GetTransactionValuePerDay($database)
+{
+	$data = $database->ReadData("SELECT DISTINCT(DAY(CreationTime)) as Day, (SELECT SUM(Value) FROM transactions as tr WHERE DAY(tr.CreationTime)=DAY(transactions.CreationTime) and tr.value > 0) as Value FROM Transactions");
+	return $data;
+}
+
 if(CheckGetParameters(["cmd"]))
 {
 	if("getCategories" == $_GET["cmd"])
@@ -177,6 +183,11 @@ if(CheckGetParameters(["cmd"]))
 	{
 		$database = new DatabaseOperations();
 			echo json_encode(GetTransactionValuePerMonth($database));
+	}
+	else if("getTransactionValuePerDay" == $_GET["cmd"])
+	{
+		$database = new DatabaseOperations();
+			echo json_encode(GetTransactionValuePerDay($database));
 	}
 	else if("getCategoriesByCategoryId" == $_GET["cmd"])
 	{
