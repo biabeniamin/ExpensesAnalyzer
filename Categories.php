@@ -149,6 +149,12 @@ function GetCategorieAmount($database)
 	return json_encode($data);
 }
 
+function GetTransactionValuePerMonth($database)
+{
+	$data = $database->ReadData("SELECT DISTINCT(MONTH(CreationTime)) as Month, (SELECT SUM(Value) FROM transactions as tr WHERE MONTH(tr.CreationTime)=MONTH(transactions.CreationTime) and tr.value > 0) as Value FROM Transactions");
+	return $data;
+}
+
 if(CheckGetParameters(["cmd"]))
 {
 	if("getCategories" == $_GET["cmd"])
@@ -166,6 +172,11 @@ if(CheckGetParameters(["cmd"]))
 	{
 		$database = new DatabaseOperations();
 			echo GetCategorieAmount($database);
+	}
+	else if("getTransactionValuePerMonth" == $_GET["cmd"])
+	{
+		$database = new DatabaseOperations();
+			echo json_encode(GetTransactionValuePerMonth($database));
 	}
 	else if("getCategoriesByCategoryId" == $_GET["cmd"])
 	{
