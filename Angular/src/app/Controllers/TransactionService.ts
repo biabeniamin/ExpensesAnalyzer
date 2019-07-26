@@ -18,6 +18,13 @@ export class TransactionService
 	{
 		return Realtimify(()=>this.http.get<Transaction[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactions"));
 	}
+	GetTransactionsOnce()
+	{
+		return this.http.get<Transaction[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactions").subscribe(data =>
+			{
+				this.transactions = data;
+			});
+	}
 	GetTransactionspPerMonth()
 	{
 		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Transactions.php?cmd=getTransactionValuePerMonth"));
@@ -49,7 +56,7 @@ export class TransactionService
 	constructor(private http:HttpClient)
 	{
 		this.transactions = [TransactionService.GetDefaultTransaction()];
-		this.GetTransactions();
+		this.GetTransactionsOnce();
 	 
 	}
 	

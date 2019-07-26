@@ -3,6 +3,7 @@ import { TransactionService } from '../Controllers/TransactionService';
 import { CategorieService } from '../Controllers/CategorieService';
 import { AccountService } from '../Controllers/AccountService';
 import { Transaction } from '../Models/Transaction';
+import { MerchantService } from '../Controllers/MerchantService';
 
 declare var $:any;
 
@@ -16,7 +17,8 @@ export class MakePaymentComponent implements OnInit {
   value:number;
   constructor(private transactionService : TransactionService, 
     private categorieService : CategorieService, 
-    private accountService : AccountService) { }
+    private accountService : AccountService,
+    private merchantService : MerchantService) { }
 
   handlePaymentSubmit(){
     if(!this.name || !this.value) return;
@@ -57,7 +59,8 @@ export class MakePaymentComponent implements OnInit {
 		event.preventDefault();
 		const target = event.target;
 		let transaction = TransactionService.GetDefaultTransaction();
-		transaction.accountId = target.querySelector('#AccountIdDropDown').value;
+    transaction.accountId = target.querySelector('#AccountIdDropDown').value;
+    transaction.merchantId = target.querySelector('#MerchantIdDropDown').value; 
 		//transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
 		//transaction.name = target.querySelector('#Name').value;
 		transaction.value = target.querySelector('#Value').value;
