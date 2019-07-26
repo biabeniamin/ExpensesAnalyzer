@@ -171,7 +171,7 @@ if(CheckGetParameters(["cmd"]))
 		$database = new DatabaseOperations();
 			echo json_encode(GetLastMerchant($database));
 	}
-	else if("getByValue" == $_GET["cmd"])
+	else if("getMerchantsByValue" == $_GET["cmd"])
 	{
 		$database = new DatabaseOperations();
 			echo GetMerchantAmount($database);
