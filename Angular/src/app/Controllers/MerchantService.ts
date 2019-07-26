@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Merchant } from '../Models/Merchant'
 import { Category } from '../Models/Category' 
 import { CategorieService } from './CategorieService';
+import Realtimify from '../Helpers/Realtimify';
 //import { CategoryService } from './CategoryService'
 
 @Injectable({
@@ -23,6 +24,11 @@ export class MerchantService
 	GetLastMerchant()
 	{
 		return this.http.get<Merchant[]>(ServerUrl.GetUrl()  + "Merchants.php?cmd=getLastMerchant");
+	}
+
+	GetMerchantByValue()
+	{
+		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Merchants.php?cmd=getMerchantsByValue"));
 	}
 	
 	static GetDefaultMerchant()
