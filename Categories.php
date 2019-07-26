@@ -140,6 +140,15 @@ function GetEmptyCategory()
 	return $categorie;
 }
 
+function GetCategorieAmount($database)
+{
+	$data = $database->ReadData("SELECT categoryId,name,creationTime,IFNULL((select sum(value) from transactions inner join merchants on merchants.MerchantId=transactions.MerchantId where merchants.CategoryId=categories.CategoryId), 0) as value FROM Categories");
+	//$categories = ConvertListToCategories($data);
+	
+//var_dump(json_encode($categories));
+	return json_encode($data);
+}
+
 if(CheckGetParameters(["cmd"]))
 {
 	if("getCategories" == $_GET["cmd"])
@@ -153,7 +162,11 @@ if(CheckGetParameters(["cmd"]))
 		$database = new DatabaseOperations();
 			echo json_encode(GetLastCategory($database));
 	}
-
+	else if("getByValue" == $_GET["cmd"])
+	{
+		$database = new DatabaseOperations();
+			echo GetCategorieAmount($database);
+	}
 	else if("getCategoriesByCategoryId" == $_GET["cmd"])
 	{
 		if(CheckGetParameters([
