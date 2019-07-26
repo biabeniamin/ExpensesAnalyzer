@@ -46,6 +46,20 @@
                             </lbd-chart>
                         </div>
             </div>
+            <div class="col-md-6">
+                <lbd-chart
+                  [title]="'Income per category'"
+                  [subtitle]="'realtime Data'"
+                  [footerIconClass]="'fa fa-clock-o'"
+                  [footerText]="'Campaign sent 2 days ago'"
+                  [type]="'doughnut'"
+                  [data]="incomeData || []"
+                  [label]="'dsadsadas'"
+                  [labels]="incomeLabels || []"
+                  [height]="480"
+                  >
+                </lbd-chart>
+            </div>
         </div>
     </div>
 </div>

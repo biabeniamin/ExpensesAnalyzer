@@ -16,6 +16,8 @@ export const monthNames = ["January", "February", "March", "April", "May", "June
 export class HomeComponent implements OnInit {
     public categoryData:any[];
     public categoryLabels:any[];
+    public incomeData:any[];
+    public incomeLabels:any[];
     public monthTransactionsData:any[];
     public monthTransactionsLabels:any[];
     public dayTransactionsData:any[];
@@ -25,10 +27,19 @@ export class HomeComponent implements OnInit {
       this.categoryService.GetCategoryByValue().subscribe((values:any[])=>{
         this.categoryData = [];
         this.categoryLabels = [];
+        this.incomeData = [];
+        this.incomeLabels = [];
          values.map(value=>{
-        if (value.value <= 0) return;
-        this.categoryData.push(value.value);
-        this.categoryLabels.push(value.name);
+        if (value.value < 0)
+        {
+          this.incomeData.push(value.value);
+          this.incomeLabels.push(value.name);
+        }
+        else if (value.value > 0)
+        {
+          this.categoryData.push(value.value);
+          this.categoryLabels.push(value.name);
+        }
       })
     });
     this.transactionsService.GetTransactionspPerMonth().subscribe((values:any[])=>{
