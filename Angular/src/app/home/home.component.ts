@@ -3,6 +3,7 @@ import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import * as Chartist from 'chartist';
 import { CategorieService } from '../Controllers/CategorieService';
 import { TransactionService } from '../Controllers/TransactionService';
+import { MerchantService } from '../Controllers/MerchantService';
 
 export const monthNames = ["January", "February", "March", "April", "May", "June",
 "July", "August", "September", "October", "November", "December"
@@ -22,18 +23,16 @@ export class HomeComponent implements OnInit {
     public monthTransactionsLabels:any[];
     public dayTransactionsData:any[];
     public dayTransactionsLabels:any[];
-    constructor(private categoryService: CategorieService, private transactionsService: TransactionService) { }
+    constructor(private categoryService: CategorieService, private transactionsService: TransactionService, private merchantService: MerchantService) { }
     async ngOnInit() {
       this.categoryService.GetCategoryByValue().subscribe((values:any[])=>{
         this.categoryData = [];
         this.categoryLabels = [];
-        this.incomeData = [];
-        this.incomeLabels = [];
          values.map(value=>{
         if (value.value < 0)
         {
-          this.incomeData.push(value.value);
-          this.incomeLabels.push(value.name);
+          //this.incomeData.push(value.value);
+         // this.incomeLabels.push(value.name);
         }
         else if (value.value > 0)
         {
@@ -42,6 +41,25 @@ export class HomeComponent implements OnInit {
         }
       })
     });
+
+
+    this.merchantService.GetMerchantByValue().subscribe((values:any[])=>{
+      console.log(values);
+      this.incomeData = [];
+      this.incomeLabels = [];
+       values.map(value=>{
+      if (value.value < 0)
+      {
+        this.incomeData.push(value.value);
+        this.incomeLabels.push(value.name);
+      }
+      else if (value.value > 0)
+      {
+      }
+    })
+  });
+
+
     this.transactionsService.GetTransactionspPerMonth().subscribe((values:any[])=>{
       this.monthTransactionsData = [];
       this.monthTransactionsLabels = [];
