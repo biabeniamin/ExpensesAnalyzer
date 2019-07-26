@@ -149,6 +149,15 @@ function GetEmptyMerchant()
 	return $merchant;
 }
 
+function GetMerchantAmount($database)
+{
+	$data = $database->ReadData("SELECT MerchantId,name,creationTime,IFNULL((select sum(value) from transactions where merchants.MerchantId=transactions.MerchantId), 0) as value FROM merchants");
+	//$categories = ConvertListToCategories($data);
+	
+//var_dump(json_encode($categories));
+	return json_encode($data);
+}
+
 if(CheckGetParameters(["cmd"]))
 {
 	if("getMerchants" == $_GET["cmd"])
@@ -161,6 +170,11 @@ if(CheckGetParameters(["cmd"]))
 	{
 		$database = new DatabaseOperations();
 			echo json_encode(GetLastMerchant($database));
+	}
+	else if("getByValue" == $_GET["cmd"])
+	{
+		$database = new DatabaseOperations();
+			echo GetMerchantAmount($database);
 	}
 
 	else if("getMerchantsByMerchantId" == $_GET["cmd"])
