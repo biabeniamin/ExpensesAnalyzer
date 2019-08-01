@@ -71,8 +71,11 @@ export class MakePaymentComponent implements OnInit {
 		let transaction = TransactionService.GetDefaultTransaction();
     transaction.accountId = target.querySelector('#AccountIdDropDown').value;
     transaction.merchantId = target.querySelector('#MerchantIdDropDown').value;
-    transaction.creationTime = new Date(target.querySelector('#TransactionDate').value).toString();
+    let date = new Date(Date.now());
+    transaction.creationTime = target.querySelector('#TransactionDate').value + " ";
+    transaction.creationTime += date.getHours()+":"+date.getMinutes() + ":" + date.getSeconds();
     console.log(target.querySelector('#TransactionDate').value);
+    console.log(date);
     console.log(transaction.creationTime);
 		//transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
 		//transaction.name = target.querySelector('#Name').value;
