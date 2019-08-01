@@ -140,9 +140,14 @@ function GetEmptyCategory()
 	return $categorie;
 }
 
-function GetCategorieAmount($database)
+function GetCategorieAmount($database, $month)
 {
-	$data = $database->ReadData("SELECT categoryId,name,creationTime,IFNULL((select sum(value) from transactions inner join merchants on merchants.MerchantId=transactions.MerchantId where merchants.CategoryId=categories.CategoryId), 0) as value FROM Categories");
+	
+	
+	if($month != 0)
+		$data = $database->ReadData("SELECT categoryId,name,creationTime,IFNULL((select sum(value) from transactions inner join merchants on merchants.MerchantId=transactions.MerchantId where merchants.CategoryId=categories.CategoryId and MONTH(transactions.creationTime)=$month), 0) as value FROM Categories");
+	else
+		$data = $database->ReadData("SELECT categoryId,name,creationTime,IFNULL((select sum(value) from transactions inner join merchants on merchants.MerchantId=transactions.MerchantId where merchants.CategoryId=categories.CategoryId), 0) as value FROM Categories");
 	//$categories = ConvertListToCategories($data);
 	
 //var_dump(json_encode($categories));
@@ -174,10 +179,15 @@ if(CheckGetParameters(["cmd"]))
 		$database = new DatabaseOperations();
 			echo json_encode(GetLastCategory($database));
 	}
+	else if("getByValue" == $_GET["cmd"] && CheckGetParameters(["month"]))
+	{
+		$database = new DatabaseOperations();
+			echo GetCategorieAmount($database, $_GET['month']);
+	}
 	else if("getByValue" == $_GET["cmd"])
 	{
 		$database = new DatabaseOperations();
-			echo GetCategorieAmount($database);
+			echo GetCategorieAmount($database, 0);
 	}
 	else if("getTransactionValuePerMonth" == $_GET["cmd"])
 	{
