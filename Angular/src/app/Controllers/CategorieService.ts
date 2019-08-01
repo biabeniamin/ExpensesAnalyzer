@@ -36,6 +36,10 @@ export class CategorieService
 	{
 		return Realtimify(()=> this.http.get<Category[]>(ServerUrl.GetUrl()  + "Categories.php?cmd=getByValue"));
 	}
+	GetCategoryByValueByMonth(month)
+	{
+		return this.http.get<any>(ServerUrl.GetUrl()  + `Categories.php?cmd=getByValue&month=${month}`);
+	}
 
 	
 	AddCategorie(categorie)
