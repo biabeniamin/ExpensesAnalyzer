@@ -27,26 +27,28 @@ export class HomeComponent implements OnInit {
     public selectedMonth : number = 0;
     constructor(private categoryService: CategorieService, private transactionsService: TransactionService, private merchantService: MerchantService) { }
     async ngOnInit() {
-      this.categoryService.GetCategoryByValue().subscribe((values:any[])=>{
-        
-        this.categoryData = [];
-        this.categoryLabels = [];
-         values.map(value=>{
-        if (value.value < 0)
-        {
-          //this.incomeData.push(value.value);
-         // this.incomeLabels.push(value.name);
-        }
-        else if (value.value > 0)
-        {
-          if(this.selectedMonth ==0 || this.selectedMonth == (new Date(value.creationTime).getMonth() + 1))
-          {
-            this.categoryData.push(value.value);
-            this.categoryLabels.push(value.name);
-          }
-        }
-      })
-    });
+      setInterval(() => {
+
+    
+          this.categoryService.GetCategoryByValueByMonth(this.selectedMonth).subscribe((values:any[])=>{
+            
+            this.categoryData = [];
+            this.categoryLabels = [];
+            values.map(value=>{
+            if (value.value < 0)
+            {
+              //this.incomeData.push(value.value);
+            // this.incomeLabels.push(value.name);
+            }
+            else if (value.value > 0)
+            {
+              console.log(value);
+              this.categoryData.push(value.value);
+              this.categoryLabels.push(value.name);
+            }
+          })
+        });
+      }, 3000);
 
 
     this.merchantService.GetMerchantByValue().subscribe((values:any[])=>{
