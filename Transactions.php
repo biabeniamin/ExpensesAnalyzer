@@ -89,7 +89,7 @@ function AddTransaction($database, $transaction)
 	$query = $query . mysqli_real_escape_string($database->connection ,$transaction->GetAccountId()).", ";
 	$query = $query . mysqli_real_escape_string($database->connection ,$transaction->GetMerchantId()).", ";
 	$query = $query . "'" . mysqli_real_escape_string($database->connection ,$transaction->GetValue()) . "', ";
-	$query = $query . "NOW()"."";
+	$query = $query . "'" . mysqli_real_escape_string($database->connection ,$transaction->GetCreationTime()) . "'";
 	
 	$query = $query . ");";
 	$database->ExecuteSqlWithoutWarning($query);
@@ -98,6 +98,7 @@ function AddTransaction($database, $transaction)
 	$transaction->SetCreationTime(date('Y-m-d H:i:s'));
 	$transaction->SetMerchant(GetMerchantsByMerchantId($database, $transaction->GetMerchantId())[0]);
 	$transaction->SetAccount(GetAccountsByAccountId($database, $transaction->GetAccountId())[0]);
+
 	return $transaction;
 	
 }
@@ -215,16 +216,19 @@ if(CheckGetParameters(["cmd"]))
 		if(CheckPostParameters([
 			'accountId',
 			'merchantId',
-			'value'
+			'value',
+			'creationTime'
 		]))
 		{
 			$database = new DatabaseOperations();
+			
 			$transaction = new Transaction(
 				$_POST['accountId'],
 				$_POST['merchantId'],
 				$_POST['value']
 			);
-	
+
+			$transaction->SetCreationTime($_POST['creationTime']);
 			echo json_encode(AddTransaction($database, $transaction));
 		}
 
