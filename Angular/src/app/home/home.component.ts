@@ -39,11 +39,8 @@ export class HomeComponent implements OnInit {
         }
         else if (value.value > 0)
         {
-          console.log(this.selectedMonth);
-          console.log(new Date(value.creationTime).getMonth());
           if(this.selectedMonth ==0 || this.selectedMonth == (new Date(value.creationTime).getMonth() + 1))
           {
-            console.log(value);
             this.categoryData.push(value.value);
             this.categoryLabels.push(value.name);
           }
@@ -59,8 +56,10 @@ export class HomeComponent implements OnInit {
        values.map(value=>{
       if (value.value < 0)
       {
-        this.incomeData.push(value.value);
-        this.incomeLabels.push(value.name);
+        if(this.selectedMonth ==0 || this.selectedMonth == (new Date(value.creationTime).getMonth() + 1)) {
+          this.incomeData.push(value.value);
+          this.incomeLabels.push(value.name);
+        }
       }
       else if (value.value > 0)
       {
