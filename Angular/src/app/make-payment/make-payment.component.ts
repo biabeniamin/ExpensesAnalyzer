@@ -15,6 +15,7 @@ declare var $:any;
 export class MakePaymentComponent implements OnInit {
   name:string;
   value:number;
+  public paymentDate : string = "2019-08-01";//new Date(Date.now()).toString("%yyyy-%MM-%dd");
   constructor(private transactionService : TransactionService, 
     private categorieService : CategorieService, 
     private accountService : AccountService,
@@ -52,6 +53,15 @@ export class MakePaymentComponent implements OnInit {
   });
   }
   ngOnInit() {
+    this.paymentDate=new Date(Date.now()).getFullYear()+"-";
+    if(new Date(Date.now()).getMonth()< 10)
+      this.paymentDate +="0";
+    this.paymentDate += (new Date(Date.now()).getMonth() + 1)+"-";
+
+    if(new Date(Date.now()).getDay()< 10)
+      this.paymentDate +="0";
+    this.paymentDate += (new Date(Date.now()).getUTCDate());
+    
   }
 
   addTransaction(event)
@@ -62,6 +72,7 @@ export class MakePaymentComponent implements OnInit {
     transaction.accountId = target.querySelector('#AccountIdDropDown').value;
     transaction.merchantId = target.querySelector('#MerchantIdDropDown').value;
     transaction.creationTime = new Date(target.querySelector('#TransactionDate').value).toString();
+    console.log(target.querySelector('#TransactionDate').value);
     console.log(transaction.creationTime);
 		//transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
 		//transaction.name = target.querySelector('#Name').value;
