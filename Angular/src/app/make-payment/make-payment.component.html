@@ -25,6 +25,7 @@ value - amount -->
   <form (submit)="addTransaction($event)">
     <div class="input-container">
     <input type="text" placeholder= "Value" id="Value" />
+    <input type="date" id="TransactionDate">
     <div class="bar"></div>
     </div>
     <select id=MerchantIdDropDown (change)="merchantChanged($event.target.value)">
