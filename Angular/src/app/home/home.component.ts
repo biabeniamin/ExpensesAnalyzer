@@ -23,9 +23,12 @@ export class HomeComponent implements OnInit {
     public monthTransactionsLabels:any[];
     public dayTransactionsData:any[];
     public dayTransactionsLabels:any[];
+    public months : [string, number][]=[["All", 0],["Jan", 1],["Feb", 2],["Mar", 3],["Apr", 4],["May", 5],["Jun", 6],["Jul", 7],["Aug", 8],["Sep", 9],["Oct", 10],["Nov", 11],["Dec", 12],];
+    public selectedMonth : number = 0;
     constructor(private categoryService: CategorieService, private transactionsService: TransactionService, private merchantService: MerchantService) { }
     async ngOnInit() {
       this.categoryService.GetCategoryByValue().subscribe((values:any[])=>{
+        
         this.categoryData = [];
         this.categoryLabels = [];
          values.map(value=>{
@@ -36,15 +39,21 @@ export class HomeComponent implements OnInit {
         }
         else if (value.value > 0)
         {
-          this.categoryData.push(value.value);
-          this.categoryLabels.push(value.name);
+          console.log(this.selectedMonth);
+          console.log(new Date(value.creationTime).getMonth());
+          if(this.selectedMonth ==0 || this.selectedMonth == (new Date(value.creationTime).getMonth() + 1))
+          {
+            console.log(value);
+            this.categoryData.push(value.value);
+            this.categoryLabels.push(value.name);
+          }
         }
       })
     });
 
 
     this.merchantService.GetMerchantByValue().subscribe((values:any[])=>{
-      console.log(values);
+      //console.log(values);
       this.incomeData = [];
       this.incomeLabels = [];
        values.map(value=>{
@@ -78,4 +87,11 @@ export class HomeComponent implements OnInit {
 });
     }
 
+
+  addCategory(event)
+	{
+    event.preventDefault();
+    const target = event.target;
+    
+	}
 }
