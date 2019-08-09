@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 55555555, 2019 at 04:16 PM
+-- Generation Time: Aug 18, 2019 at 04:18 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -142,6 +142,7 @@ CREATE TABLE `transactions` (
   `AccountId` int(11) NOT NULL,
   `MerchantId` int(11) NOT NULL,
   `Value` double NOT NULL,
+  `Description` text NOT NULL,
   `CreationTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -149,14 +150,14 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`TransactionId`, `AccountId`, `MerchantId`, `Value`, `CreationTime`) VALUES
-(6, 1, 1, 150, '2019-07-21 15:45:53'),
-(7, 1, 3, -500, '2019-07-21 17:20:12'),
-(12, 1, 4, 150, '2019-07-31 18:32:40'),
-(13, 1, 5, -1000, '2019-08-28 19:08:37'),
-(14, 1, 6, 150, '2019-07-31 19:11:10'),
-(15, 1, 7, 150, '2019-07-27 19:12:05'),
-(16, 1, 8, -200, '2019-07-27 19:13:04');
+INSERT INTO `transactions` (`TransactionId`, `AccountId`, `MerchantId`, `Value`, `Description`, `CreationTime`) VALUES
+(6, 1, 1, 150, '', '2019-07-21 15:45:53'),
+(7, 1, 3, -500, '', '2019-07-21 17:20:12'),
+(12, 1, 4, 150, '', '2019-07-31 18:32:40'),
+(13, 1, 5, -1000, '', '2019-08-28 19:08:37'),
+(14, 1, 6, 150, '', '2019-07-31 19:11:10'),
+(15, 1, 7, 150, '', '2019-07-27 19:12:05'),
+(16, 1, 8, -200, '', '2019-07-27 19:13:04');
 
 --
 -- Indexes for dumped tables
