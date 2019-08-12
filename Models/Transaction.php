@@ -8,6 +8,7 @@ class Transaction
 	var $accountId;
 	var $merchantId;
 	var $value;
+	var $description;
 	var $creationTime;
 	var $merchant;
 	var $account;
@@ -47,6 +48,15 @@ class Transaction
 	{
 		$this->value = $value;
 	}
+
+	function GetDescription()
+	{
+		return $this->description;
+	}
+	function SetDescription($value)
+	{
+		$this->description = $value;
+	}
 	
 	function GetCreationTime()
 	{
@@ -76,13 +86,14 @@ class Transaction
 	}
 	
 
-	function Transaction($AccountId, $MerchantId, $Value)
+	function Transaction($AccountId, $MerchantId, $Value, $Description)
 	{
 		$this->transactionId = 0;
 	
 		$this->accountId = $AccountId;
 		$this->merchantId = $MerchantId;
 		$this->value = $Value;
+		$this->description = $Description;
 	}
 
 }
