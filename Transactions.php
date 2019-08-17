@@ -17,7 +17,8 @@ function ConvertListToTransactions($data)
 		$transaction = new Transaction(
 		$row["AccountId"], 
 		$row["MerchantId"], 
-		$row["Value"] 
+		$row["Value"],
+		$row["Description"]
 		);
 	
 		$transaction->SetTransactionId($row["TransactionId"]);
