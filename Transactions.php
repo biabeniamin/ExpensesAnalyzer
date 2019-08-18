@@ -86,10 +86,11 @@ function CompleteTransactions($database, $transactions)
 
 function AddTransaction($database, $transaction)
 {
-	$query = "INSERT INTO Transactions(AccountId, MerchantId, Value, CreationTime) VALUES(";
+	$query = "INSERT INTO Transactions(AccountId, MerchantId, Value, Description, CreationTime) VALUES(";
 	$query = $query . mysqli_real_escape_string($database->connection ,$transaction->GetAccountId()).", ";
 	$query = $query . mysqli_real_escape_string($database->connection ,$transaction->GetMerchantId()).", ";
 	$query = $query . "'" . mysqli_real_escape_string($database->connection ,$transaction->GetValue()) . "', ";
+	$query = $query . "'" . mysqli_real_escape_string($database->connection ,$transaction->GetDescription()) . "', ";
 	$query = $query . "'" . mysqli_real_escape_string($database->connection ,$transaction->GetCreationTime()) . "'";
 	
 	$query = $query . ");";
@@ -193,14 +194,16 @@ if(CheckGetParameters(["cmd"]))
 		if(CheckGetParameters([
 			'accountId',
 			'merchantId',
-			'value'
+			'value',
+			'description'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$transaction = new Transaction(
 				$_GET['accountId'],
 				$_GET['merchantId'],
-				$_GET['value']
+				$_GET['value'],
+				$_GET['description']
 			);
 		
 			echo json_encode(AddTransaction($database, $transaction));
@@ -218,7 +221,8 @@ if(CheckGetParameters(["cmd"]))
 			'accountId',
 			'merchantId',
 			'value',
-			'creationTime'
+			'creationTime',
+			'description'
 		]))
 		{
 			$database = new DatabaseOperations();
@@ -226,7 +230,8 @@ if(CheckGetParameters(["cmd"]))
 			$transaction = new Transaction(
 				$_POST['accountId'],
 				$_POST['merchantId'],
-				$_POST['value']
+				$_POST['value'],
+				$_POST['description']
 			);
 
 			$transaction->SetCreationTime($_POST['creationTime']);
