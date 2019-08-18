@@ -9,6 +9,7 @@ export interface Transaction
 	accountId : number;
 	merchantId : number;
 	value : number;
+	description:string;
 	creationTime : string;
 	merchant : Merchant;
 	account : Account;
