@@ -56,54 +56,18 @@ value - amount -->
             TransactionId
         </th>
         <th>
-            AccountId
-        </th>
-        <th>
-            MerchantId
-        </th>
-        <th>
             Value
         </th>
         <th>
             CreationTime
         </th>
         <th>
-            merchant.MerchantId
-        </th>
-        <th>
-            merchant.CategoryId
-        </th>
-        <th>
             merchant.Name
-        </th>
-        <th>
-            merchant.CreationTime
-        </th>
-        <th>
-            account.AccountId
-        </th>
-        <th>
-            account.Email
-        </th>
-        <th>
-            account.Password
-        </th>
-        <th>
-            account.Balance
-        </th>
-        <th>
-            account.CreationTime
         </th>
     </tr>
     <tr *ngFor="let transaction of transactionService.transactions; let i = index">
         <td>
             {{transaction.transactionId}}
-        </td>
-        <td>
-            {{transaction.accountId}}
-        </td>
-        <td>
-            {{transaction.merchantId}}
         </td>
         <td>
             {{transaction.value}}
@@ -112,31 +76,7 @@ value - amount -->
             {{transaction.creationTime}}
         </td>
         <td>
-            {{transaction.merchant.merchantId}}
-        </td>
-        <td>
-            {{transaction.merchant.categoryId}}
-        </td>
-        <td>
             {{transaction.merchant.name}}
-        </td>
-        <td>
-            {{transaction.merchant.creationTime}}
-        </td>
-        <td>
-            {{transaction.account.accountId}}
-        </td>
-        <td>
-            {{transaction.account.email}}
-        </td>
-        <td>
-            {{transaction.account.password}}
-        </td>
-        <td>
-            {{transaction.account.balance}}
-        </td>
-        <td>
-            {{transaction.account.creationTime}}
         </td>
     </tr>
 </tbody>
