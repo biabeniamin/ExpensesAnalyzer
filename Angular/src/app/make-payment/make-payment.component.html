@@ -24,7 +24,8 @@ value - amount -->
 
   <form (submit)="addTransaction($event)">
       <div class="input-container">
-          <input type="text" placeholder= "Value" id="Value" />
+        <input type="text" placeholder= "Value" id="Value" />
+        <input type="text" placeholder= "Description" id="Description" />
           <input type="date" name="dateField" id="TransactionDate" [(ngModel)]="paymentDate">
     <div class="bar"></div>
     </div>
