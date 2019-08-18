@@ -64,6 +64,9 @@ value - amount -->
         <th>
             merchant.Name
         </th>
+        <th>
+            Description
+        </th>
     </tr>
     <tr *ngFor="let transaction of transactionService.transactions; let i = index">
         <td>
@@ -77,6 +80,9 @@ value - amount -->
         </td>
         <td>
             {{transaction.merchant.name}}
+        </td>
+        <td>
+            {{transaction.description}}
         </td>
     </tr>
 </tbody>
