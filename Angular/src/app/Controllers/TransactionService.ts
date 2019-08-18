@@ -47,6 +47,7 @@ export class TransactionService
 		accountId : 0,
 		merchantId : 0,
 		value : 0,
+		description : "",
 		creationTime : '2000-01-01 00:00:00',
 		merchant : MerchantService.GetDefaultMerchant(),
 		account : AccountService.GetDefaultAccount()
