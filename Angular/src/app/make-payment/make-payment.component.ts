@@ -79,7 +79,8 @@ export class MakePaymentComponent implements OnInit {
     console.log(transaction.creationTime);
 		//transaction.categoryId = target.querySelector('#CategoryIdDropDown').value;
 		//transaction.name = target.querySelector('#Name').value;
-		transaction.value = target.querySelector('#Value').value;
+    transaction.value = target.querySelector('#Value').value;
+    transaction.description = target.querySelector('#Description').value;
 		console.log(transaction);
 		this.transactionService.AddTransaction(transaction);
 	}
