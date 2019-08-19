@@ -149,9 +149,12 @@ function GetEmptyMerchant()
 	return $merchant;
 }
 
-function GetMerchantAmount($database)
+function GetMerchantAmount($database, $month)
 {
-	$data = $database->ReadData("SELECT MerchantId,name,creationTime,IFNULL((select sum(value) from transactions where merchants.MerchantId=transactions.MerchantId), 0) as value FROM merchants");
+	if($month != 0)
+		$data = $database->ReadData("SELECT MerchantId,name,creationTime,IFNULL((select sum(value) from transactions where merchants.MerchantId=transactions.MerchantId and MONTH(transactions.creationTime)=$month), 0) as value FROM merchants");
+	else
+		$data = $database->ReadData("SELECT MerchantId,name,creationTime,IFNULL((select sum(value) from transactions where merchants.MerchantId=transactions.MerchantId), 0) as value FROM merchants");
 	//$categories = ConvertListToCategories($data);
 	
 //var_dump(json_encode($categories));
@@ -171,10 +174,16 @@ if(CheckGetParameters(["cmd"]))
 		$database = new DatabaseOperations();
 			echo json_encode(GetLastMerchant($database));
 	}
+	else if("getMerchantsByValue" == $_GET["cmd"]  && CheckGetParameters(["month"]))
+	{
+		$database = new DatabaseOperations();
+			echo GetMerchantAmount($database, $_GET['month']);
+	}
+
 	else if("getMerchantsByValue" == $_GET["cmd"])
 	{
 		$database = new DatabaseOperations();
-			echo GetMerchantAmount($database);
+			echo GetMerchantAmount($database, 8);
 	}
 
 	else if("getMerchantsByMerchantId" == $_GET["cmd"])
