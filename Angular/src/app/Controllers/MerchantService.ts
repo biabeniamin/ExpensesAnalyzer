@@ -30,6 +30,11 @@ export class MerchantService
 	{
 		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + "Merchants.php?cmd=getMerchantsByValue"));
 	}
+
+	GetMerchantByValueByMonth(month)
+	{
+		return Realtimify(()=> this.http.get<any[]>(ServerUrl.GetUrl()  + `Merchants.php?cmd=getMerchantsByValue&month=${month}`));
+	}
 	
 	static GetDefaultMerchant()
 	{
