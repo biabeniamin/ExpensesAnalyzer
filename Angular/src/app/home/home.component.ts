@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
             }
             else if (value.value > 0)
             {
-              console.log(value);
+              //console.log(value);
               this.categoryData.push(value.value);
               this.categoryLabels.push(value.name);
             }
@@ -50,24 +50,27 @@ export class HomeComponent implements OnInit {
         });
       }, 3000);
 
+      setInterval(() => {
+        console.log(this.selectedMonth);
+        this.merchantService.GetMerchantByValueByMonth(this.selectedMonth).subscribe((values:any[])=>{
+          console.log(values);
+          this.incomeData = [];
+          this.incomeLabels = [];
+           values.map(value=>{
+          if (value.value < 0)
+          {
+              this.incomeData.push(value.value);
+              this.incomeLabels.push(value.name);
+          }
+          else if (value.value > 0)
+          {
+          }
+        })
+      });
+  
+      }, 6000);
+      
 
-    this.merchantService.GetMerchantByValue().subscribe((values:any[])=>{
-      //console.log(values);
-      this.incomeData = [];
-      this.incomeLabels = [];
-       values.map(value=>{
-      if (value.value < 0)
-      {
-        if(this.selectedMonth ==0 || this.selectedMonth == (new Date(value.creationTime).getMonth() + 1)) {
-          this.incomeData.push(value.value);
-          this.incomeLabels.push(value.name);
-        }
-      }
-      else if (value.value > 0)
-      {
-      }
-    })
-  });
 
 
     this.transactionsService.GetTransactionspPerMonth().subscribe((values:any[])=>{
