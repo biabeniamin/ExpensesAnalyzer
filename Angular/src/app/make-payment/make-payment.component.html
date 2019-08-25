@@ -32,7 +32,7 @@ value - amount -->
     <select id=MerchantIdDropDown (change)="merchantChanged($event.target.value)">
         <option [value]="merchant.merchantId" *ngFor= "let merchant of merchantService.merchants" >
         {{merchant.merchantId}}
-        {{merchant.categoryId}}
+        {{merchant.categorie.name}}
         {{merchant.name}}
         </option>
     </select>
